@@ -21,9 +21,10 @@ public class HomebankingApplication {
           System.out.println("app launching");
 
           Client client1 = new Client("Luciano","Sapio", "elitaliano76@gmail.com");
-
+          Client client2 = new Client("Melba", "Morel", "melba@mindhub.com");
           clientRepository.save(client1);
-
+          clientRepository.save(client2);
+          
 
       };
     }
