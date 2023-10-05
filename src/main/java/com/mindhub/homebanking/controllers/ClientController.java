@@ -4,7 +4,9 @@ import com.mindhub.homebanking.DTO.ClientDTO;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,8 +17,9 @@ import java.util.stream.Stream;
 public class ClientController {
     @Autowired
     private ClientRepository clientRepository;
+
     @RequestMapping("/clients")
-    public List<ClientDTO> getAllClient(){
+    public List<ClientDTO> getAllClient() {
 
         List<Client> clients = clientRepository.findAll();
 
@@ -28,12 +31,26 @@ public class ClientController {
 
 
         return clientDTOS;
-    };
-    @PostMapping("/Clients")
-    public Client create(@RequestBody Client client){
+    }
+
+    ;
+    @GetMapping("/clients/{id}")
+    public ClientDTO getClientById(@PathVariable Long id) {
+        Client client = clientRepository.findById(id).orElse(null);
+        if (client != null) {
+            return new ClientDTO(client);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Client not found");
+        }
+    }
+    @PostMapping("/api/Clients")
+    public Client create(@RequestBody Client client) {
         return clientRepository.save(client);
     }
-    @PutMapping("/client/{id}")
+
+    ;
+}
+    /*@PutMapping("/api/clients/{id}")
     public Client update(@RequestBody Client client, @PathVariable Long id ){
         Client clientBase = clientRepository.getOne(id);
         clientBase.setName(client.getName());
@@ -43,10 +60,10 @@ public class ClientController {
         return clientRepository.save(client);
     }
 
-    @DeleteMapping("/client/{id}")
+    @DeleteMapping("/api/client/{id}")
     public void delete(@PathVariable Long id){
         clientRepository.deleteById(id);
     }
 
 
-}
+}*/

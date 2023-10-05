@@ -1,10 +1,10 @@
 package com.mindhub.homebanking.models;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.ManyToAny;
+
 
 import javax.persistence.*;
-import javax.xml.crypto.Data;
+import java.time.LocalDate;
 
 @Entity
 public class Account {
@@ -13,32 +13,34 @@ public class Account {
     @GeneratedValue (strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-    private Data currentDate;
+    private LocalDate currentDateValue;
     private Long balance;
     private Long number;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn()
     private Client client;
     public Account() {
     }
 
-    public Account(Data currentDate, Long balance, Long number) {
-        this.currentDate = currentDate;
+    public Account(LocalDate currentDate, Long balance, Long number, Client client) {
+        this.currentDateValue = currentDate;
         this.balance = balance;
         this.number = number;
-
+        this.client = client;
     }
+
 
     public Long getId() {
         return id;
     }
 
-    public Data getCurrentDate() {
-        return currentDate;
+    public LocalDate getCurrentDate() {
+        return currentDateValue;
     }
 
-    public void setCurrentDate(Data currentDate) {
-        this.currentDate = currentDate;
+    public void setCurrentDate(LocalDate currentDate) {
+        this.currentDateValue = currentDate;
     }
 
     public Long getBalance() {
