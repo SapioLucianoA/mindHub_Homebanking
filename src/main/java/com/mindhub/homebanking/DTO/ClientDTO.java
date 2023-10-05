@@ -40,4 +40,8 @@ public class ClientDTO {
     public String getMail() {
         return mail;
     }
+    public List<AccountDTO> getAccounts() {
+        return accounts;
+    }
+
 }
