@@ -20,7 +20,8 @@ public class ClientDTO {
       name = client.getName();
       lastName = client.getLastName();
       mail = client.getMail();
-      accounts = client.getAccounts().stream()
+      accounts = client.getAccounts()
+                .stream()
                 .map(account -> new AccountDTO(account))
                 .collect(Collectors.toList());
     };

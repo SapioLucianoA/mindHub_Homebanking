@@ -18,9 +18,13 @@ public class AccountController {
     private AccountRepository accountRepository;
     @RequestMapping("/accounts")
     public List<AccountDTO> getAllAccounts(){
+
         List<Account> accounts = accountRepository.findAll();
+
         Stream <Account> accountStream = accounts.stream();
+
         Stream<AccountDTO> accountDTOStream = accountStream.map(account -> new AccountDTO(account));
+
         List<AccountDTO> accountDTOS = accountDTOStream.collect(Collectors.toList());
 
         return accountDTOS;
