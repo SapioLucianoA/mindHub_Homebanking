@@ -22,7 +22,7 @@
                   <a class="nav-link active " aria-current="page" href="../index.html"> <span class="textHeader fw-bold" > Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="./pages/accounts.html"> <span class="textHeader fw-bold " > Account</span> </a>
+                  <a class="nav-link active" href="./accounts.html"> <span class="textHeader fw-bold " >Account</span> </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link active" href="#"> <span class="textHeader fw-bold " > Prox. </span></a>
@@ -31,7 +31,7 @@
             </div>
           </div>
         </nav>
-        
+         
         <img src="../images/Capybank.png" alt="Capybank " class="logo-header">
       </div>
     </header>
@@ -39,26 +39,23 @@
 
 
     <main>
-        <div id="app" class="d-flex div-acccounts-main mt-3">
-          <h2 v-if="clients">Hello, Capy {{ clients.name }} {{clients.lastName}}!</h2>
-          
-            <div class="div-of-credit-cards">
-            <div class="card cards cards-styles div-credit-card" v-for="account in accounts">
-              <a class="w-100 text-decoration-none " v-bind:href="`./account.html?accountId=${account.id}`">
-              <div class="d-flex flex-row justify-content-between align-items-center w-100">
-                <img src="../images/06794e75-0966-4962-a199-a942c5f9d611.jpg" alt="chip" class="Cards-logos">
-                <img src="../images/Logo.png" alt="banco image" class="Cards-logos">
-                </div>
-              <div class="card-body ">
-                <h5 class="card-title fs-2 text-dark fw-bold">USD${{ Number(account.balance).toLocaleString('de-DE')}}</h5>
-                <p class="card-text text-dark fw-bold">Account Number:  {{ account.number }}</p>
-                <p class="card-text text-dark fw-bold " > Creation Date:   {{account.currentDate}}</p>
-              </div>
-              </a>
-
+        <div id="app">
+        <h2 class="text-center" >Wel-capy, to your transactions</h2>
+        
+           <div>
+            <div class="w-100 d-flex justify-content-center align-items-center" v-for="transaction in transactions">
+            <div class="w-75 rounded mt-4 mb-2" v-bind:style="{ backgroundColor: transaction.type === 'DEBIT' ? 'red' : 'green' }">
+            <h4 class="text-center">Transaction Type: {{transaction.type}} </h4>
+            <div>
+              <h5 class="text-center fw-bold"> Amount:  {{Number(transaction.amount).toLocaleString('de-DE')}} </h5>
+                <p class="text-center fw-bold">Date: {{transaction.date}}</p>
+                <p class="text-center fw-bold" >Description: {{transaction.description}}</p>
+                
             </div>
-          </div>
+            </div>
+            </div>
         </div>
+    </div>
     </main>
     <footer>
 
@@ -66,6 +63,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="../JS/accounts.js"></script>
+    <script src="../JS/account.js"></script>
 </body>
 </html>

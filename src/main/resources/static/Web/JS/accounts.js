@@ -15,6 +15,7 @@ createApp({
       .then(response => {
         this.clients = response.data
         this.accounts = this.clients.accounts
+        this.accounts.sort((a, b) => b.number - a.number )
         console.log(this.accounts)
       })
     

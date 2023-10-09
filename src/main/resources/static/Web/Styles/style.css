@@ -1,0 +1,115 @@
+main{
+    min-height: 100vh;
+}
+.header-div{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column-reverse;
+}
+.img-index{
+    height: 90%;
+    width: 80%;
+}
+.index-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.div-home{
+    height: 30rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: black solid;
+}
+.div-acccounts-main{
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+.div-of-credit-cards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.cards-styles{
+    background-color: rgb(7, 61, 161);
+    color: black;
+    font-weight: bold;
+    height: 15rem;
+    width: 75%;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+body{
+    background-color: rgb(173, 74, 28);
+    
+}
+.logo-header{
+    width: 10rem;
+    height: 10rem;
+    align-self: center;
+}
+.Cards-logos{
+    width: 4rem;
+    height: 4rem;
+    margin-top: 3rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-radius: 0.5rem;
+}
+.tittle{
+    color: brown;
+    margin-left: 1rem;
+}
+.h1-T{
+    font-size: 3rem;
+}
+
+header{
+    background-color: rgb(255, 255, 255);
+}
+.textHeader{
+    color: rgb(226, 117, 16) !important ;
+}
+.display-none{
+    display: none;
+}
+footer{
+    height: 5rem;
+    background-color: blanchedalmond;
+}
+.div-credit-card{
+    transition: all 0.5s ease;
+}
+.div-credit-card:hover{
+    transform: scale(1.1);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+.div-credit-card:active {
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+}
+@media screen and (min-width: 600px) and (max-width: 992px){
+    .cards-styles{
+        width: 40%;
+    }
+    .header-div{
+        flex-direction: row;
+    }
+}
+@media screen and (min-width: 993px){
+    .cards-styles{
+        width: 25rem;
+    }
+    .header-div{
+        flex-direction: row;
+    }
+}
