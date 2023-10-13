@@ -38,10 +38,10 @@ public class AccountController {
 
     //accounts x id
     @GetMapping("/accounts/{accountId}")
-    public ResponseEntity<Account> getAccountById(@PathVariable Long accountId) {
+    public AccountDTO getAccountById(@PathVariable Long accountId) {
         Account account = accountRepository.findById(accountId)
                 .orElseThrow(() -> new ResourceNotFoundException("Account not found with id " + accountId));
-        return ResponseEntity.ok(account);
+        return new AccountDTO(account);
     };
 
 

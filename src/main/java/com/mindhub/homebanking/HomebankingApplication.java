@@ -1,12 +1,7 @@
 package com.mindhub.homebanking;
 
-import com.mindhub.homebanking.models.Account;
-import com.mindhub.homebanking.models.Client;
-import com.mindhub.homebanking.models.Transaction;
-import com.mindhub.homebanking.models.TransactionType;
-import com.mindhub.homebanking.repositories.AccountRepository;
-import com.mindhub.homebanking.repositories.ClientRepository;
-import com.mindhub.homebanking.repositories.TransactionRepository;
+import com.mindhub.homebanking.models.*;
+import com.mindhub.homebanking.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 @SpringBootApplication
 public class HomebankingApplication {
@@ -25,24 +21,37 @@ public class HomebankingApplication {
 	}
 
     @Bean
-    public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository){
+    public CommandLineRunner initData(ClientLoanRepository clientLoanRepository, ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository){
       return args -> {
           System.out.println("app launching");
 
+          // CLientes
           Client client2 = new Client("Luciano","Sapio", "elitaliano76@gmail.com");
           Client client1 = new Client("Melba", "Morel", "melba@mindhub.com");
           clientRepository.save(client1);
           clientRepository.save(client2);
+          Client client3 = new Client("Elsa", "Patilla", "xXxdetonatorxXx@outlook.com");
+          clientRepository.save(client3);
+
+
           LocalDate now = LocalDate.now();
           LocalDate tomorrow =  LocalDate.now().plusDays(1);
-
-          Account VIN002 = new Account(tomorrow, 6500L, 2L, client1);
-          Account VIN001 = new Account(now,4700L,1L,client1);
-          Account SAP001 = new Account(now, 800L, 1L, client2 );
+            // CUentas
+          Account VIN002 = new Account(tomorrow, 6500.00, 2L, client1);
+          Account VIN001 = new Account(now,4700.00,1L,client1);
+          Account SAP001 = new Account(now, 800.00, 1L, client2 );
+          Account SAP002 = new Account(now, 100000.00, 2L, client2);
+          Account PAT001 = new Account(tomorrow, 300.00, 1L, client3);
 
           accountRepository.save(VIN001);
           accountRepository.save(VIN002);
           accountRepository.save(SAP001);
+          accountRepository.save(SAP002);
+          accountRepository.save(PAT001);
+
+
+
+          //Transacciones
           LocalDateTime DT1 = LocalDateTime.of(LocalDate.now(), LocalTime.of(22, 30));
           LocalDateTime DT2 = LocalDateTime.of(LocalDate.now().plusDays(1), LocalTime.of(6,30));
           LocalDateTime DT3 = LocalDateTime.of(LocalDate.now().plusDays(1), LocalTime.of(12,30));
@@ -71,6 +80,32 @@ public class HomebankingApplication {
           transactionRepository.save(SAP1T002);
           transactionRepository.save(SAP1T003);
           transactionRepository.save(SAP1T004);
+
+          //Loans y Payments
+          List<Integer> payment1 = List.of(12,24,36,48,60) ;
+          List<Integer> payment2 = List.of(6,12,24);
+          List<Integer> payment3 = List.of(6,12,24,36);
+
+          Loan mortageLoan = new Loan("Mortgage", 500000.00, payment1);
+          Loan personalLoan = new Loan("Personal", 100000.00, payment2);
+          Loan autoLoan = new Loan("Auto", 300000.00, payment3);
+
+          loanRepository.save(mortageLoan);
+          loanRepository.save(personalLoan);
+          loanRepository.save(autoLoan);
+
+          ClientLoan VIN1L001 = new ClientLoan(400000.00, 60, client1, mortageLoan);
+          ClientLoan VIN2L002 = new ClientLoan(500000.00, 12, client1, personalLoan);
+          ClientLoan SAP1L001 = new ClientLoan(100000.00, 24, client2, personalLoan);
+          ClientLoan SAP2L001 = new ClientLoan(200000.00, 36, client2, autoLoan);
+
+          clientLoanRepository.save(VIN1L001);
+          clientLoanRepository.save(VIN2L002);
+          clientLoanRepository.save(SAP1L001);
+          clientLoanRepository.save(SAP2L001);
+
+
+
 
 
       };

@@ -16,20 +16,20 @@ public class Account {
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
     private LocalDate currentDateValue;
-    private Long balance;
+    private Double balance;
     private Long number;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn()
     private Client client;
 
-    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
     private Set<Transaction> transactions = new HashSet<>();
 
     public Account() {
     }
 
-    public Account(LocalDate currentDate, Long balance, Long number, Client client) {
+    public Account(LocalDate currentDate, Double balance, Long number, Client client) {
         this.currentDateValue = currentDate;
         this.balance = balance;
         this.number = number;
@@ -49,11 +49,11 @@ public class Account {
         this.currentDateValue = currentDate;
     }
 
-    public Long getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
-    public void setBalance(Long balance) {
+    public void setBalance(Double balance) {
         this.balance = balance;
     }
 
@@ -75,6 +75,17 @@ public class Account {
     public void addTransaction(Transaction transaction){
         transaction.setAccount(this);
         transactions.add(transaction);
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", currentDateValue='" + currentDateValue + '\'' +
+                ", balance='" + balance + '\'' +
+                ", number='" + number + '\'' +
+                ", client='" + client + '\'' +
+                '}';
     }
 
 }

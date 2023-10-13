@@ -12,7 +12,7 @@ public class AccountDTO {
 
     private Long id;
     private LocalDate currentDateValue;
-    private Long balance;
+    private Double balance;
     private Long number;
     private List<TransactionDTO> transactions;
 
@@ -37,7 +37,7 @@ public class AccountDTO {
         return currentDateValue;
     }
 
-    public Long getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
