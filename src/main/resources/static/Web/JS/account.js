@@ -3,7 +3,7 @@ const { createApp } = Vue
 createApp({
   data() {
     return {
-      message: 'Hello Vue!',
+      message: '',
       clients: [],
       accounts: [],
       account: [],
@@ -22,8 +22,16 @@ createApp({
         this.transactions = this.account.transactions
         this.transactions.sort((a, b) => b.id - a.id)
         console.log(this.transactions)
+        this.checktransactions;
       })
     
+  },
+  computed: {
+    checktransactions() {
+      if (this.transactions.length === 0) {
+        this.message = 'You dont have any capytransactions to see';
+      }
+    }
   },
 })
 .mount('#app')

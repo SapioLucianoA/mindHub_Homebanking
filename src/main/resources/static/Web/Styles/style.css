@@ -31,6 +31,11 @@ main{
     flex-direction: column;
     
 }
+.message-h2{
+
+    width: 75%;
+    margin-top: 10rem;
+}
 .div-of-credit-cards{
     display: flex;
     justify-content: center;
@@ -42,7 +47,18 @@ main{
     background-color: rgb(7, 61, 161);
     color: black;
     font-weight: bold;
-    height: 15rem;
+    height: 17rem;
+    width: 75%;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.cards-styles-loan{
+    background-color: red;
+    color: black;
+    font-weight: bold;
+    height: 17rem;
     width: 75%;
     margin-top: 3rem;
     margin-bottom: 1rem;
@@ -66,6 +82,12 @@ body{
     margin-right: 1rem;
     border-radius: 0.5rem;
 }
+.Cards-loan{
+    width: 75%;
+    height: 8rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
 .tittle{
     color: brown;
     margin-left: 1rem;
@@ -79,13 +101,23 @@ header{
 }
 .textHeader{
     color: rgb(226, 117, 16) !important ;
+    font-size: 2rem;
+}
+.social{
+    width: 3rem;
+    height: 3rem;
+    margin-left: 1rem;
 }
 .display-none{
     display: none;
 }
 footer{
-    height: 5rem;
+    height: 15rem;
     background-color: blanchedalmond;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 .div-credit-card{
     transition: all 0.5s ease;
@@ -97,6 +129,7 @@ footer{
 .div-credit-card:active {
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
 }
+
 @media screen and (min-width: 600px) and (max-width: 992px){
     .cards-styles{
         width: 40%;
@@ -104,12 +137,34 @@ footer{
     .header-div{
         flex-direction: row;
     }
+    .cards-styles-loan{
+        width: 40%;
+    }
+    .Cards-loan{
+        width: 15rem;
+    }
+    footer{
+        flex-direction: row;
+        justify-content: space-between;
+        height: 5rem;
+    }
 }
 @media screen and (min-width: 993px){
     .cards-styles{
         width: 25rem;
     }
+    .cards-styles-loan{
+        width: 25rem;
+    }
     .header-div{
         flex-direction: row;
+    }
+    .Cards-loan{
+        width: 15rem;
+    }
+    footer{
+        flex-direction: row;
+        justify-content: space-between;
+        height: 5rem;
     }
 }
