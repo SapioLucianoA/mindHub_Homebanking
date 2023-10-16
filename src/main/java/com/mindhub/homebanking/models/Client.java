@@ -83,6 +83,11 @@ public class Client {
         account.setClient(this);
         accounts.add(account);
     }
+    public Set<Card> getCards(){return cards;}
+    public void addCards(Card card){
+        card.setClient(this);
+        cards.add(card);
+    }
 
     public Set<ClientLoan> getClientLoans() {return clientLoans;};
 
@@ -97,6 +102,7 @@ public class Client {
                 .map(clientLoan -> clientLoan.getLoan())
                 .collect(Collectors.toList());
     }
+
 
 
     @Override

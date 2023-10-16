@@ -19,6 +19,7 @@ public class ClientDTO {
     private List <AccountDTO> accounts;
     @JsonManagedReference
     private List<ClientLoanDTO> loans;
+    private  List<CardDTO> cards;
 
 
     public ClientDTO (Client client){
@@ -26,14 +27,21 @@ public class ClientDTO {
       name = client.getName();
       lastName = client.getLastName();
       mail = client.getMail();
+
       accounts = client.getAccounts()
                 .stream()
                 .map(account -> new AccountDTO(account))
                 .collect(Collectors.toList());
+
       loans= client.getClientLoans()
                      .stream()
                 .map(clientLoan -> new ClientLoanDTO(clientLoan))
                   .collect(Collectors.toList());
+
+      cards= client.getCards()
+              .stream()
+              .map(card -> new CardDTO(card))
+              .collect(Collectors.toList());
     };
 
     public Long getId() {
