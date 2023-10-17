@@ -1,9 +1,7 @@
 package com.mindhub.homebanking.controllers;
 
 
-import com.mindhub.homebanking.DTO.AccountDTO;
 import com.mindhub.homebanking.DTO.CardDTO;
-import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Card;
 import com.mindhub.homebanking.repositories.CardRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
@@ -16,12 +14,12 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
-public class CardContoller {
+public class CardController {
     @Autowired
     private CardRepository cardRepository;
     @Autowired
     private ClientRepository clientRepository;
-    @RequestMapping("/accounts")
+    @RequestMapping("/cards")
     public List<CardDTO> getAllCards(){
         List<Card> cards = cardRepository.findAll();
         return cards.stream()

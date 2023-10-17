@@ -19,6 +19,7 @@ public class ClientDTO {
     private List <AccountDTO> accounts;
     @JsonManagedReference
     private List<ClientLoanDTO> loans;
+    @JsonManagedReference
     private  List<CardDTO> cards;
 
 

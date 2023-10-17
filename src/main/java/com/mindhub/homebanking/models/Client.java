@@ -32,6 +32,7 @@ public class Client {
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private Set<ClientLoan> clientLoans = new HashSet<>();
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private Set<Card> cards = new HashSet<>();
 
@@ -114,6 +115,7 @@ public class Client {
                 ", mail='" + mail + '\'' +
                 ", Accounts='" + accounts + '\'' +
                 ", Loans='" + clientLoans + '\'' +
+                ", cards='" + cards + '\'' +
                 '}';
     }
 }

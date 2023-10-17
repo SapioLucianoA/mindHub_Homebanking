@@ -1,5 +1,6 @@
 package com.mindhub.homebanking.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class Card {
     private LocalDate fromDate;
     private LocalDate thruDate;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn()
     private Client client;
@@ -27,7 +29,7 @@ public class Card {
     public Card() {
     }
 
-    public Card(CardType type, CardColor color, String cvv, String cardHolder, String number, LocalDate fromDate, LocalDate thruDate) {
+    public Card(Client client, CardType type, CardColor color, String cvv, String cardHolder, String number, LocalDate fromDate, LocalDate thruDate) {
         this.type = type;
         this.color = color;
         this.cvv = cvv;
@@ -35,6 +37,7 @@ public class Card {
         this.number = number;
         this.fromDate = fromDate;
         this.thruDate = thruDate;
+        this.client = client;
     }
 
     public Long getId() {

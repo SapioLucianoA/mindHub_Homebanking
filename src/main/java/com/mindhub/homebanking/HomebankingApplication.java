@@ -21,7 +21,7 @@ public class HomebankingApplication {
 	}
 
     @Bean
-    public CommandLineRunner initData(ClientLoanRepository clientLoanRepository, ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository){
+    public CommandLineRunner initData(CardRepository cardRepository,  ClientLoanRepository clientLoanRepository, ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository){
       return args -> {
           System.out.println("app launching");
 
@@ -36,6 +36,7 @@ public class HomebankingApplication {
 
           LocalDate now = LocalDate.now();
           LocalDate tomorrow =  LocalDate.now().plusDays(1);
+          LocalDate fiveYears = LocalDate.now().plusYears(5);
             // CUentas
           Account VIN002 = new Account(tomorrow, 6500.00, 2L, client1);
           Account VIN001 = new Account(now,4700.00,1L,client1);
@@ -104,9 +105,16 @@ public class HomebankingApplication {
           clientLoanRepository.save(SAP1L001);
           clientLoanRepository.save(SAP2L001);
 
+          // Cards
+
+          Card C1Client1 = new Card(client1 ,CardType.DEBIT, CardColor.GOLD, "938", "Melba-Morel", "3264-2465-5465-5456", now, fiveYears);
+          Card C2Client1 = new Card(client1, CardType.DEBIT,CardColor.TITANIUM, "078","Melba-Morel", "6528-4593-7824-4444", now, fiveYears);
+          Card C1Client2 = new Card(client2, CardType.CREDIT, CardColor.SILVER, "639", "Luciano-Sapio", "6963-3318-2127-6936", tomorrow, fiveYears);
 
 
-
+          cardRepository.save(C1Client1);
+          cardRepository.save(C1Client2);
+          cardRepository.save(C2Client1);
 
       };
     }
