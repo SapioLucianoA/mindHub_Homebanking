@@ -32,8 +32,7 @@ main{
     
 }
 .message-h2{
-
-    width: 75%;
+    width: 100%;
     margin-top: 10rem;
 }
 .div-of-credit-cards{
@@ -54,11 +53,22 @@ main{
     margin-left: 1rem;
     margin-right: 1rem;
 }
-.cards-styles-loan{
-    background-color: red;
+.creditDebitCards{
     color: black;
     font-weight: bold;
-    height: 17rem;
+    height: 12rem;
+    width: 100%;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+    font-size: small;
+}
+.cards-styles-loan{
+    background-color: rgb(14, 206, 14);
+    color: black;
+    font-weight: bold;
+    height: 16rem;
     width: 75%;
     margin-top: 3rem;
     margin-bottom: 1rem;
@@ -77,10 +87,17 @@ body{
 .Cards-logos{
     width: 4rem;
     height: 4rem;
-    margin-top: 3rem;
     margin-left: 1rem;
     margin-right: 1rem;
     border-radius: 0.5rem;
+}
+.Cards-logosCD{
+    width: 2rem;
+    height: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-radius: 0.5rem;
+    margin-top: -2rem;
 }
 .Cards-loan{
     width: 75%;
@@ -118,6 +135,7 @@ footer{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-top: 2rem;
 }
 .div-credit-card{
     transition: all 0.5s ease;
@@ -128,6 +146,52 @@ footer{
 }
 .div-credit-card:active {
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+}
+.debitandCredirCards{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin-top: 2rem;
+    justify-content: center;
+}
+.cardContainer{
+    width: 75%;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    border: black 0.2rem solid;
+    height: 18rem;
+}
+.dateCards{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+}
+.ownerTypeCard{
+    font-size: 1.2rem;
+}
+.TITANIUM{
+    background: linear-gradient(45deg, #bdc3c7, #2c3e50);
+    
+}
+.GOLD{
+    background: linear-gradient(
+    to right,
+    #ffd700, /* Gold */
+    #fff0c1, /* Light Gold */
+    #ffd700  /* Gold */
+  );
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.SILVER{
+    background: linear-gradient(
+    to right,
+    #C0C0C0, /* Silver */
+    #F5F5F5, /* White Smoke */
+    #C0C0C0  /* Silver */
+  );
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
 }
 
 @media screen and (min-width: 600px) and (max-width: 992px){
@@ -148,6 +212,25 @@ footer{
         justify-content: space-between;
         height: 5rem;
     }
+    .debitandCredirCards{
+        flex-direction: column;
+    }
+    .cardContainer{
+        height: 16rem;
+        width: 50%;
+    }
+    .dateCards{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .Cards-logosCD{
+        width: 4rem;
+        height: 4rem;
+    }
+    .ownerTypeCard{
+        font-size: 1.5rem;
+    }
+
 }
 @media screen and (min-width: 993px){
     .cards-styles{
@@ -166,5 +249,34 @@ footer{
         flex-direction: row;
         justify-content: space-between;
         height: 5rem;
+    }
+    .debitandCredirCards{
+        flex-wrap: wrap;
+    }
+    .cardContainer{
+        height: 21rem;
+        width: 50%;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    .dateCards{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .Cards-logosCD{
+        margin-top: 0.1rem;
+        width: 3rem;
+        height: 3rem;
+    }
+    .containerAllCards{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+    .creditCardsANDDebit{
+        width: 50%;
+    }
+    .ownerTypeCard{
+        font-size: 1.6rem;
     }
 }

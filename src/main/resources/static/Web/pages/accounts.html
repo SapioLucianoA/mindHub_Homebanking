@@ -22,10 +22,10 @@
                   <a class="nav-link active " aria-current="page" href="../index.html"> <span class="textHeader fw-bold " > Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="./pages/accounts.html"> <span class="textHeader fw-bold " > Account</span> </a>
+                  <a class="nav-link active" href="#"> <span class="textHeader fw-bold " > Account</span> </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="#"> <span class="textHeader fw-bold " > Prox. </span></a>
+                  <a class="nav-link active" href="./cards.html"> <span class="textHeader fw-bold " > Cards </span></a>
                 </li>
               </ul>
             </div>
@@ -45,12 +45,11 @@
             <div class="div-of-credit-cards">
             <div class="card cards cards-styles div-credit-card" v-for="account in accounts">
               <a class="w-100 text-decoration-none " v-bind:href="`./account.html?accountId=${account.id}`">
-              <div class="d-flex flex-row justify-content-between align-items-center w-100">
-                <img src="../images/06794e75-0966-4962-a199-a942c5f9d611.jpg" alt="chip" class="Cards-logos">
-                <img src="../images/Logo.png" alt="banco image" class="Cards-logos">
+              <div class="d-flex flex-row justify-content-between align-items-center w-100 mt-3">
+                <h5 class="card-title ms-2 fs-2 text-dark fw-bold">USD${{ Number(account.balance).toLocaleString('de-DE')}}</h5>
+                <img src="../images/icons8-capybara-100.png" alt="banco image" class="Cards-logos">
                 </div>
               <div class="card-body ">
-                <h5 class="card-title fs-2 text-dark fw-bold">USD${{ Number(account.balance).toLocaleString('de-DE')}}</h5>
                 <p class="card-text text-dark fw-bold">Account Number:  {{ account.number }}</p>
                 <p class="card-text text-dark fw-bold " > Creation Date:   {{account.currentDate}}</p>
               </div>

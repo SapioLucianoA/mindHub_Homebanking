@@ -18,6 +18,7 @@ public class CardDTO {
     private LocalDate thruDate;
 
     public CardDTO(Card card){
+        id= card.getId();
         type = card.getType();
         color = card.getColor();
         cvv = card.getCvv();
