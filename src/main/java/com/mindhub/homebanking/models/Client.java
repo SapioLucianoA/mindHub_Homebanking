@@ -20,7 +20,9 @@ public class Client {
     
     private String lastName;
     
-    private String mail;
+    private String email;
+    private String password;
+    private String role;
 
 
 
@@ -37,16 +39,33 @@ public class Client {
     private Set<Card> cards = new HashSet<>();
 
 
-    public Client() {
+    public Client(String name, String lastName, String email, String encode) {
     }
 
-    public Client(String name, String lastName, String mail) {
+    public Client(String name, String lastName, String email, String password, String role) {
         this.name = name;
         this.lastName = lastName;
-        this.mail = mail;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+
     }
 
+    public String getRole() {
+        return role;
+    }
 
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getName() {
         return name;
@@ -64,12 +83,12 @@ public class Client {
         this.lastName = lastName;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Long getId() {
@@ -112,7 +131,7 @@ public class Client {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", mail='" + mail + '\'' +
+                ", mail='" + email + '\'' +
                 ", Accounts='" + accounts + '\'' +
                 ", Loans='" + clientLoans + '\'' +
                 ", cards='" + cards + '\'' +

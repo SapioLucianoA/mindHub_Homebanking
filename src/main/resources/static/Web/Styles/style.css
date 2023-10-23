@@ -1,6 +1,9 @@
 main{
     min-height: 100vh;
 }
+.header-nav{
+    background-color: rgb(16, 238, 16)!important;
+}
 .header-div{
     display: flex;
     justify-content: space-between;
@@ -43,7 +46,7 @@ main{
     width: 100%;
 }
 .cards-styles{
-    background-color: rgb(7, 61, 161);
+    background-color: rgb(17, 223, 27);
     color: black;
     font-weight: bold;
     height: 17rem;
@@ -65,10 +68,10 @@ main{
     font-size: small;
 }
 .cards-styles-loan{
-    background-color: rgb(14, 206, 14);
+    background-color: rgb(247, 131, 23);
     color: black;
     font-weight: bold;
-    height: 16rem;
+    height: 12rem;
     width: 75%;
     margin-top: 3rem;
     margin-bottom: 1rem;
@@ -76,7 +79,7 @@ main{
     margin-right: 1rem;
 }
 body{
-    background-color: rgb(173, 74, 28);
+    background-color: rgb(224, 92, 30);
     
 }
 .logo-header{
@@ -99,12 +102,6 @@ body{
     border-radius: 0.5rem;
     margin-top: -2rem;
 }
-.Cards-loan{
-    width: 75%;
-    height: 8rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-}
 .tittle{
     color: brown;
     margin-left: 1rem;
@@ -114,23 +111,31 @@ body{
 }
 
 header{
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(29, 248, 0);
 }
 .textHeader{
-    color: rgb(226, 117, 16) !important ;
+    color: rgb(0, 0, 0) !important ;
     font-size: 2rem;
+    margin-right: 1rem;
 }
 .social{
     width: 3rem;
     height: 3rem;
+    margin-right: 2rem!important;
     margin-left: 1rem;
 }
 .display-none{
     display: none;
 }
+.ul{
+    color: #C0C0C0;
+    list-style-type: none;
+    background-color: rgb(78, 78, 78);
+    width: 20rem;
+}
 footer{
     height: 15rem;
-    background-color: blanchedalmond;
+    background-color: rgb(29, 248, 0);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -159,7 +164,7 @@ footer{
     width: 75%;
     margin-top: 3rem;
     margin-bottom: 3rem;
-    border: black 0.2rem solid;
+    
     height: 18rem;
 }
 .dateCards{
@@ -170,6 +175,12 @@ footer{
 }
 .ownerTypeCard{
     font-size: 1.2rem;
+}
+.DEBIT{
+    color: rgb(253, 68, 68);
+}
+.CREDIT{
+    color: rgb(45, 199, 45);
 }
 .TITANIUM{
     background: linear-gradient(45deg, #bdc3c7, #2c3e50);
@@ -278,5 +289,8 @@ footer{
     }
     .ownerTypeCard{
         font-size: 1.6rem;
+    }
+    .creditDebitCards{
+        font-size: medium;
     }
 }

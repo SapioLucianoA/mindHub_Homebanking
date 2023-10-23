@@ -25,7 +25,7 @@
                   <a class="nav-link active" href="./accounts.html"> <span class="textHeader fw-bold " >Account</span> </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="#"> <span class="textHeader fw-bold " > Prox. </span></a>
+                  <a class="nav-link active" href="./cards.html"> <span class="textHeader fw-bold " > Cards </span></a>
                 </li>
               </ul>
             </div>
@@ -42,9 +42,23 @@
         <div id="app">
         <h2 class="text-center" >Wel-capy, to your transactions</h2>
         
-           <div>
-            <div class="w-100 d-flex justify-content-center align-items-center" v-for="transaction in transactions">
-            <div class="w-75 rounded mt-4 mb-2" v-bind:style="{ backgroundColor: transaction.type === 'DEBIT' ? 'red' : 'green' }">
+           <div class="d-flex justify-content-center align-items-center" v-for="transaction in transactions">
+            <div class="d-flex flex-column">
+              <ul class="ul">
+                <li class="text-center"><span class="fw-bold">Transaction type:</span> {{transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1).toLowerCase()}} </li>
+                <li class="text-center " v-bind:class="{ 'DEBIT': transaction.type === 'DEBIT', 'CREDIT': transaction.type === 'CREDIT'} "><span class="fw-bold">Amount:</span> {{Number(transaction.amount).toLocaleString('de-DE')}}</li>
+                <li class="text-center"><span class="fw-bold">Date:</span> {{transaction.date}}</li>
+                <li class="text-center"><span class="fw-bold">Description:</span> {{transaction.description}}</li>
+            </ul>
+          </div>
+        </div>
+        <h2 class="message-h2 text-center w-100">
+          {{message}}
+        </h2>
+    </div>
+</div>
+
+            <!-- <div class="w-75 rounded mt-4 mb-2" v-bind:style="{ backgroundColor: transaction.type === 'DEBIT' ? 'red' : 'green' }">
             <h4 class="text-center">Transaction Type: {{transaction.type}} </h4>
             <div>
               <h5 class="text-center fw-bold"> Amount:  {{Number(transaction.amount).toLocaleString('de-DE')}} </h5>
@@ -52,12 +66,8 @@
                 <p class="text-center fw-bold" >Description: {{transaction.description}}</p>
                 
             </div>
-            </div>
-            </div>
-            <h2 class="message-h2 text-center w-100">
-              {{message}}
-            </h2>
-        </div>
+            </div> -->
+            
     </div>
     </main>
     <footer >

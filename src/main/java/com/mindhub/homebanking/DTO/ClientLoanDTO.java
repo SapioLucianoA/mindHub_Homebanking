@@ -20,7 +20,6 @@ public class ClientLoanDTO {
     @JsonBackReference
     private Client client;
 
-
     private Long loanId;
     private String name;
 

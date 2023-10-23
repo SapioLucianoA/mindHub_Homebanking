@@ -14,7 +14,7 @@ public class ClientDTO {
 
     private String lastName;
 
-    private String mail;
+    private String email;
 
     private List <AccountDTO> accounts;
     @JsonManagedReference
@@ -27,7 +27,7 @@ public class ClientDTO {
       id = client.getId();
       name = client.getName();
       lastName = client.getLastName();
-      mail = client.getMail();
+      email = client.getEmail();
 
       accounts = client.getAccounts()
                 .stream()
@@ -57,8 +57,8 @@ public class ClientDTO {
         return lastName;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
     public List<AccountDTO> getAccounts() {
         return accounts;
@@ -67,4 +67,5 @@ public class ClientDTO {
     public List<ClientLoanDTO> getClientLoans() {
         return loans;
     }
+    public List<CardDTO> getCards(){return cards;}
 }

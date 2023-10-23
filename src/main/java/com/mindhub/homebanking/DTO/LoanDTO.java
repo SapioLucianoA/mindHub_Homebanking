@@ -1,5 +1,6 @@
 package com.mindhub.homebanking.DTO;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.mindhub.homebanking.models.Loan;
 
 import javax.persistence.ElementCollection;
@@ -12,6 +13,8 @@ public class LoanDTO {
     private Double maxAmount;
 
     private List<Integer> payment;
+    @JsonManagedReference
+    private List<ClientLoanDTO> loans;
 
     public LoanDTO(Loan loan){
         id= loan.getId();
@@ -34,5 +37,9 @@ public class LoanDTO {
 
     public List<Integer> getPayment() {
         return payment;
+    }
+
+    public List<ClientLoanDTO> getClientLoans() {
+        return loans;
     }
 }
