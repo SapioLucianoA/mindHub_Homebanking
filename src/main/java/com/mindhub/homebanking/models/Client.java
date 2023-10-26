@@ -22,7 +22,7 @@ public class Client {
     
     private String email;
     private String password;
-    private String role;
+    private ClientRole clientRole;
 
 
 
@@ -39,24 +39,23 @@ public class Client {
     private Set<Card> cards = new HashSet<>();
 
 
-    public Client(String name, String lastName, String email, String encode) {
+    public Client() {
     }
 
-    public Client(String name, String lastName, String email, String password, String role) {
+    public Client(String name, String lastName, String email, String password, ClientRole clientRole) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.role = role;
-
+        this.clientRole = clientRole;
     }
 
-    public String getRole() {
-        return role;
+    public ClientRole getClientRole() {
+        return clientRole;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setClientRole(ClientRole clientRole) {
+        this.clientRole = clientRole;
     }
 
     public String getPassword() {

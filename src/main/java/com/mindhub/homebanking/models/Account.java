@@ -1,11 +1,14 @@
 package com.mindhub.homebanking.models;
 
+import com.mindhub.homebanking.repositories.AccountRepository;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 @Entity
@@ -17,7 +20,8 @@ public class Account {
     private Long id;
     private LocalDate currentDateValue;
     private Double balance;
-    private Long number;
+    private String number;
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn()
@@ -26,10 +30,12 @@ public class Account {
     @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
     private Set<Transaction> transactions = new HashSet<>();
 
+
+
     public Account() {
     }
 
-    public Account(LocalDate currentDate, Double balance, Long number, Client client) {
+    public Account(LocalDate currentDate, Double balance, String number, Client client) {
         this.currentDateValue = currentDate;
         this.balance = balance;
         this.number = number;
@@ -57,11 +63,11 @@ public class Account {
         this.balance = balance;
     }
 
-    public Long getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Long number) {
+    public void setNumber(String number) {
         this.number = number;
     }
     public void setClient(Client client) {

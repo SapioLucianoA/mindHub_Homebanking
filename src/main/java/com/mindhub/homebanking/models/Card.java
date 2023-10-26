@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Random;
 
 @Entity
 public class Card {
@@ -26,6 +27,9 @@ public class Card {
     @JoinColumn()
     private Client client;
 
+
+
+
     public Card() {
     }
 
@@ -39,6 +43,7 @@ public class Card {
         this.thruDate = thruDate;
         this.client = client;
     }
+
 
     public Long getId() {
         return id;

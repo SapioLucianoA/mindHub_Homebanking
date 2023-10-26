@@ -23,13 +23,19 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter   {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
-                .antMatchers("/web/pages/**").hasAuthority("CLIENT")
-                .antMatchers("h2-console/").hasAnyAuthority("ADMIN")
-                .antMatchers(HttpMethod.POST, "api/login").permitAll()
-                .antMatchers(HttpMethod.GET, "api/logout").hasAnyAuthority("ADMIN")
-                .antMatchers("/web/index.html").permitAll()
-                .antMatchers("/web/login").permitAll();
+                .antMatchers("/h2/console").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
+                .antMatchers("/rest/clients").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/login").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/logout").hasAnyAuthority("ADMIN", "CLIENT")
+
+                ;
+
+
+
+
+        ;
+
 
 
 
@@ -38,7 +44,7 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter   {
                 .passwordParameter("password")
                 .loginPage("/api/login");
 
-        http.logout().logoutUrl("/api/logout");
+        http.logout().logoutUrl("api/logout");
 
         // turn off checking for CSRF tokens
 

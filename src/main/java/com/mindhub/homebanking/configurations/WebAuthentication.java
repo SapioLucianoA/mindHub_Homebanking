@@ -21,7 +21,6 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
 
 
     @Override
-
     public void init(AuthenticationManagerBuilder auth) throws Exception {
 
         auth.userDetailsService(inputName-> {
@@ -29,7 +28,7 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
 
             if (client != null ){
                 return new User(client.getEmail(), client.getPassword(),
-                        AuthorityUtils.createAuthorityList(client.getRole()));
+                        AuthorityUtils.createAuthorityList(String.valueOf(client.getClientRole())));
             }
             else {
                 throw new UsernameNotFoundException("Unknown client"+ inputName);
@@ -38,7 +37,6 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
 
     }
     @Bean
-
     public PasswordEncoder passwordEncoder() {
 
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();

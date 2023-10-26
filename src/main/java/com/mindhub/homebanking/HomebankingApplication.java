@@ -26,6 +26,9 @@ public class HomebankingApplication {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private  AccountService accountService;
+
 
 
     @Bean
@@ -37,17 +40,18 @@ public class HomebankingApplication {
 
 
           // CLientes
-          Client client2 = new Client("Luciano","Sapio", "elitaliano76@gmail.com", passwordEncoder.encode("Luckyyyy1234"), "CLIENT");
-          Client client1 = new Client("Melba", "Morel", "melba@mindhub.com",  passwordEncoder.encode("melba"), "CLIENT");
+          Client client2 = new Client("Luciano","Sapio", "elitaliano76@gmail.com", passwordEncoder.encode("luckyyyy1234"), ClientRole.CLIENT);
+          Client client1 = new Client("Melba", "Morel", "melba@mindhub.com", passwordEncoder.encode("melbaMorel"), ClientRole.CLIENT);
+
 
 
           clientRepository.save(client1);
           clientRepository.save(client2);
-          Client client3 = new Client("Elsa", "Patilla", "xXxdetonatorxXx@outlook.com",  passwordEncoder.encode("ratatingamer"), "CLIENT");
+          Client client3 = new Client("Elsa", "Patilla", "123@123.com", passwordEncoder.encode("123"), ClientRole.CLIENT);
 
           clientRepository.save(client3);
 
-          Client man1 = new Client("admin","admin","admin@admin.com", passwordEncoder.encode("admin"), "ADMIN");
+          Client man1 = new Client("admin","admin","admin@admin.com",passwordEncoder.encode("admin"), ClientRole.ADMIN);
 
           clientRepository.save(man1);
 
@@ -56,11 +60,12 @@ public class HomebankingApplication {
           LocalDate tomorrow =  LocalDate.now().plusDays(1);
           LocalDate fiveYears = LocalDate.now().plusYears(5);
             // CUentas
-          Account VIN002 = new Account(tomorrow, 6500.00, 2L, client1);
-          Account VIN001 = new Account(now,4700.00,1L,client1);
-          Account SAP001 = new Account(now, 800.00, 1L, client2 );
-          Account SAP002 = new Account(now, 100000.00, 2L, client2);
-          Account PAT001 = new Account(tomorrow, 300.00, 1L, client3);
+          String accountNumber = accountService.generateUniqueAccountNumber();
+          Account VIN002 = new Account(tomorrow, 6500.00, accountNumber, client1);
+          Account VIN001 = new Account(now,4700.00,accountNumber,client1);
+          Account SAP001 = new Account(now, 800.00, accountNumber, client2 );
+          Account SAP002 = new Account(now, 100000.00, accountNumber, client2);
+          Account PAT001 = new Account(tomorrow, 300.00, accountNumber, client3);
 
           accountRepository.save(VIN001);
           accountRepository.save(VIN002);

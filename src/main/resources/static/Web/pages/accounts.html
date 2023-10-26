@@ -41,7 +41,7 @@
     <main>
         <div id="app" class="d-flex div-acccounts-main mt-3">
           <h2 v-if="clients">Hello, Capy {{ clients.name }} {{clients.lastName}}!</h2>
-          <h2>Your Capyccounts:</h2>
+          <h2 class="mt-5">Your Capyccounts:</h2>
           
             <div class="div-of-credit-cards">
             <div class="card cards cards-styles div-credit-card" v-for="account in accounts">
@@ -53,12 +53,12 @@
               <div class="card-body ">
                 <p class="card-text text-dark fw-bold fs-3 ">Account Number:  {{ account.number }}</p>
                 <p class="card-text text-dark fw-bold " > Creation Date:   {{account.currentDate}}</p>
-                <p class="card-text text-dark fs-2 text-center fw-bold text-decoration-underline" > see transactions </p>
+                <p class="card-text text-dark fs-2 text-center fw-bold text-decoration-underline" > See transactions </p>
               </div>
               </a>
             </div>
             <div>
-              <h2 class="text-center" >Your Loans:</h2>
+              <h2 class="text-center mt-5" >Your Loans:</h2>
             <div class="div-of-credit-cards">
               
               <div class="card cards  cards-styles-loan div-credit-card " v-for="loan in loans">
