@@ -10,6 +10,12 @@ createApp({
       debitCards:[],
       messageCredit: '',
       messageDebit: '',
+      type:'',
+      color:'',
+      name:'',
+      lastName:'',
+      showCVV: false,
+      limitCard: '',
     }
   },
 
@@ -32,6 +38,7 @@ createApp({
         console.log(this.debitCards)
         this.checkCardsCredit;
         this.checkCardsDebit;
+        this.checkLimitCards();
 
         
 
@@ -57,5 +64,61 @@ createApp({
           }
     },
   },
-})
+  methods: {
+    logout() {
+      axios.post('/api/logout')
+        .then(response => {
+          
+          console.log(response);
+          
+          // Redirige a "./web/index.html"
+          window.location.href = '/web/index.html';
+        })
+        .catch(error => {
+          
+          console.error(error);
+        });
+    },
+    checkLimitCards() {
+      if(this.cards.length >= 6){
+        this.limitCard = 'd-none'
+      }
+    },
+  isBlank(str) {
+      return (!str || /^\s*$/.test(str));
+  },
+    newCard(){
+      if (this.isBlank(this.name)) {
+        alert('Please, complete your First Name.');
+        return;
+      }
+      if (this.isBlank(this.lastName)) {
+        alert('Please, complete your Last Name.');
+        return;
+      }
+      if (this.isBlank(this.type)) {
+        alert('Please, select your card type.');
+        return;
+      }
+      if (this.isBlank(this.color)) {
+        alert('Please, select your card color.');
+        return;
+      }
+
+      axios.post("/api/clients/current/cards", `type=${this.type}&color=${this.color}&name=${this.name}&lastName=${this.lastName}`)
+      .then(response =>
+        console.log(response),
+        window.location.href = `/web/pages/cards.html`
+      )
+      .catch(error => {
+        alert(error);
+    });
+    },
+    maskCVV(cvv) {
+      return cvv.replace(/./g, '*');
+    },
+  }
+}
+)
+
 .mount('#app')

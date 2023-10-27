@@ -30,8 +30,9 @@ methods: {
             window.location.href = `/web/index.html`
         })
         .catch(error => {
-            console.log(error);
+            alert(error);
         });
-    }
+    },
+    
     
 }}).mount('#app')

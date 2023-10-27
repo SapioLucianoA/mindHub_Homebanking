@@ -9,6 +9,7 @@
         <title>Homebanking | Your Cards</title>
     </head>
     <body>
+      <div id="app">
         <header  >
           <div class="d-flex  header-div" >
             <nav class="navbar navbar-expand-lg bg-body-tertiary header-nav ms-1">
@@ -27,6 +28,9 @@
                     <li class="nav-item">
                       <a class="nav-link active" href="#"> <span class="textHeader fw-bold " > Prox. </span></a>
                     </li>
+                    <li>
+                      <a class="nav-link active ms-2"  href="#"  @click="logout" > <span class="textHeader fw-bold " > Log out </span></a>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -36,9 +40,10 @@
           </div>
         </header>
 <main>
-<div id="app">
+<div >
     <div class="w-100" >
         <h2 class="text-center" >Your Cards:</h2>
+        <a href="./create-cards.html"><h2 class="text-center" v-bind:class="limitCard" > New Card</h2></a>
         <h2 class="message-h2 text-center">
             {{message}} </h2>
         <div class="containerAllCards">
@@ -48,21 +53,26 @@
                     {{messageCredit}} </h2>
                 <div class="debitandCredirCards"  >
                     <div class="card cardContainer" v-for="card in creditCards" v-bind:class="{ 'TITANIUM': card.color === 'TITANIUM', 'GOLD': card.color === 'GOLD', 'SILVER': card.color === 'SILVER' } " >
-                        <div class="creditDebitCards" >
-                            <div class="d-flex flex-row justify-content-between align-items-center w-100">
+                        <div class="creditDebitCards " >
+                            <div class="d-none d-md-flex d-flex flex-row  align-items-center w-100  justify-content-between">
                                 <img src="../images/06794e75-0966-4962-a199-a942c5f9d611.jpg" alt="chip" class="Cards-logosCD">
                                 <img src="../images/Logo.png" alt="banco image" class="Cards-logosCD">
                             </div>
                             <div class="card-body">
-                                <p class="card-text text-dark ownerTypeCard fw-bold"> Owner: {{card.cardHolder}}  </p>
-                                <p class="card-text text-dark ownerTypeCard fw-bold"> {{card.type}} CARD </p>
-                                <p class="card-text text-dark fw-bold">Number: {{card.number}} </p>
-                                <div class="dateCards">
-                                    <p class="card-text text-dark fw-bold">From:  {{card.fromDate}}</p>
-                                    <p class="card-text text-dark fw-bold"> Expired: {{card.thruDate}}</p>
-                                </div>
-                                <p class="card-text text-dark fw-bold"></p>
-                            </div>
+                              <p class="card-text text-dark ownerTypeCard fw-bold"> {{card.type}} CARD </p>
+                              <p class="card-text text-dark ownerTypeCard fw-bold">{{card.number}} </p>
+                              <div class="dateCards">
+                                <div class="d-flex flex-row justify-content-evenly align-items-center">
+                                  <button @click="showCVV = !showCVV" class="buttonCVV">CVV:</button>
+                                <p class="card-text text-dark fw-bold ms-2" v-if="!showCVV">{{maskCVV(card.cvv)}}</p>
+                                <p class="card-text text-dark fw-bold  ms-2" v-else> {{card.cvv}}</p>
+                                
+                               </div>
+
+                                  <p class="card-text text-dark fw-bold"> Expired: {{card.thruDate}}</p>
+                              </div>
+                              
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -70,25 +80,31 @@
 
             <div class="creditCardsANDDebit">
                 <h3 class="text-center" > Debit Cards</h3>
+                
                 <h2 class="message-h2 text-center">
                     {{messageDebit}} </h2>
                 
                 <div class="debitandCredirCards"  >
                     <div class="card cardContainer" v-for="card in debitCards" v-bind:class="{ 'TITANIUM': card.color === 'TITANIUM', 'GOLD': card.color === 'GOLD', 'SILVER': card.color === 'SILVER' } " >
-                        <div class="creditDebitCards" >
-                            <div class="d-flex flex-row justify-content-between align-items-center w-100">
+                        <div class="creditDebitCards " >
+                            <div class="d-flex flex-row justify-content-between align-items-center w-100 d-none d-md-flex">
                                 <img src="../images/06794e75-0966-4962-a199-a942c5f9d611.jpg" alt="chip" class="Cards-logosCD">
                                 <img src="../images/Logo.png" alt="banco image" class="Cards-logosCD">
                             </div>
-                            <div class="card-body">
-                                <p class="card-text text-dark ownerTypeCard fw-bold"> Owner: {{card.cardHolder}}  </p>
-                                <p class="card-text text-dark ownerTypeCard fw-bold"> {{card.type}} CARD </p>
-                                <p class="card-text text-dark fw-bold">Number: {{card.number}} </p>
+                            <div class="mt-2">
+                                <p class="card-text text-dark ownerTypeCard fw-bold ms-2"> {{card.type}} CARD </p>
+                                <p class="card-text text-dark ownerTypeCard fw-bold ms-2">{{card.number}} </p>
                                 <div class="dateCards">
-                                    <p class="card-text text-dark fw-bold">From:  {{card.fromDate}}</p>
-                                    <p class="card-text text-dark fw-bold"> Expired: {{card.thruDate}}</p>
+                                  <div class="d-flex flex-row justify-content-evenly align-items-center ms-2">
+                                    <button @click="showCVV = !showCVV" class="buttonCVV">CVV:</button>
+                                  <p class="card-text text-dark fw-bold ms-2" v-if="!showCVV">{{maskCVV(card.cvv)}}</p>
+                                  <p class="card-text text-dark fw-bold  ms-2" v-else> {{card.cvv}}</p>
+                                  
+                                 </div>
+  
+                                    <p class="card-text text-dark fw-bold me-2"> Expired: {{card.thruDate}}</p>
                                 </div>
-                                <p class="card-text text-dark fw-bold"></p>
+                                
                             </div>
                         </div>
                     </div>
@@ -98,6 +114,7 @@
     </div>
 </div>
 </main>
+</div>
 <footer >
     <div class="d-flex justify-content-center align-items-center">
       <img src="../images/icons8-meta-50.png" alt="meta-social-icon" class="social">

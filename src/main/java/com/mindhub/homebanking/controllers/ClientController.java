@@ -130,7 +130,7 @@ public class ClientController {
 
     @PostMapping("/clients/current/cards")
     public ResponseEntity<Object> createdCard (Authentication authentication, @RequestParam CardType type,
-@RequestParam CardColor color) {
+@RequestParam CardColor color, @RequestParam String name, @RequestParam String lastName) {
 
         String email = authentication.getName();
         Client client = clientRepository.findByEmail(email);
@@ -152,7 +152,7 @@ public class ClientController {
 
         String cvv = cardsService.generateCVV();
         String number = cardsService.generateCardNumber();
-        String cardHolder = client.getName() + " " + client.getLastName();
+        String cardHolder = name + " " + lastName;
 
         //creacion y guardado
         Card card = new Card(client, type, color, cvv, cardHolder, number, LocalDate.now(), LocalDate.now().plusYears(5));

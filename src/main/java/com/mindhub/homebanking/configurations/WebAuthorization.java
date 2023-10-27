@@ -44,7 +44,7 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter   {
                 .passwordParameter("password")
                 .loginPage("/api/login");
 
-        http.logout().logoutUrl("api/logout");
+        http.logout().logoutUrl("/api/logout");
 
         // turn off checking for CSRF tokens
 
