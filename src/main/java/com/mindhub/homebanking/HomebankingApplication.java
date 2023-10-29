@@ -2,6 +2,7 @@ package com.mindhub.homebanking;
 
 import com.mindhub.homebanking.models.*;
 import com.mindhub.homebanking.repositories.*;
+import com.mindhub.homebanking.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -27,7 +28,7 @@ public class HomebankingApplication {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private  AccountService accountService;
+    private AccountService accountService;
 
 
 
