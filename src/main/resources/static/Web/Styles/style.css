@@ -150,8 +150,9 @@ header{
 .ul{
     color: #C0C0C0;
     list-style-type: none;
-    background-color: rgb(78, 78, 78);
     width: 20rem;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
 }
 footer{
     height: 15rem;
@@ -196,10 +197,14 @@ footer{
     font-size: 1.2rem;
 }
 .DEBIT{
-    color: rgb(253, 68, 68);
+    background-color: rgb(230, 56, 56);
+    color: black;
+    font-weight: bold;
 }
 .CREDIT{
-    color: rgb(45, 199, 45);
+    background-color: rgb(80, 235, 80);
+    color: black;
+    font-weight: bold;
 }
 .TITANIUM{
     background: linear-gradient(45deg, #bdc3c7, #2c3e50);
@@ -223,7 +228,22 @@ footer{
   );
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
 }
-
+.option-color{
+    color: black;
+    font-weight: bold;
+}
+.superiorofTranser{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.radios-buttons{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
 @media screen and (min-width: 600px) and (max-width: 992px){
     .cards-styles{
         width: 40%;

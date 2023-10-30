@@ -19,7 +19,7 @@ methods: {
         window.location.href = `/web/pages/accounts.html`;
         })
         .catch(error => {
-            alert('Email or Password invalid');
+            alert(error);
         });
     },
     register(){

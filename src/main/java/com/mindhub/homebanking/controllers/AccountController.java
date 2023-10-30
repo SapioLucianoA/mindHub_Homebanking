@@ -55,11 +55,11 @@ public class AccountController {
     @Transactional
     @PostMapping("/transactions")
     public ResponseEntity<Object> sendTransaction (
-            Authentication authentication, @RequestParam Double ammount, @RequestParam String number,
+            Authentication authentication, @RequestParam Double amount, @RequestParam String number,
             @RequestParam String number2, @RequestParam String description
     ){
-    if (ammount.isNaN()){
-        return new ResponseEntity<>("Please put a ammount valid", HttpStatus.FORBIDDEN);
+    if (amount.isNaN()){
+        return new ResponseEntity<>("Please put a amount valid", HttpStatus.FORBIDDEN);
     }
     if (number.isBlank()){
         return new ResponseEntity<>("Missing origen account", HttpStatus.FORBIDDEN);
@@ -94,22 +94,22 @@ public class AccountController {
         if (!originAccount.getClient().equals(client)){
             return new ResponseEntity<>("The origin account does not belong to the authenticated client", HttpStatus.FORBIDDEN);
         }
-        if (originAccount.getBalance() < ammount){
+        if (originAccount.getBalance() < amount){
             return new ResponseEntity<>("The Amount cant be more than the balance of the account", HttpStatus.FORBIDDEN);
         }
         // llamado a services y lo demas necesario para creat las transactiones
         Account accountSend = accountRepository.findByNumber(number2);
 
         // crear dos transactiones number DEBIT y la number2 CREDIT
-        Transaction transaction1 = new Transaction(LocalDateTime.now(), TransactionType.DEBIT,description,-ammount,originAccount);
-        Transaction transaction2 = new Transaction(LocalDateTime.now(), TransactionType.CREDIT, description, ammount,accountSend);
+        Transaction transaction1 = new Transaction(LocalDateTime.now(), TransactionType.DEBIT,description,-amount,originAccount);
+        Transaction transaction2 = new Transaction(LocalDateTime.now(), TransactionType.CREDIT, description, amount,accountSend);
 
         //crear las weas de operacioness
 
-        originAccount.setBalance(originAccount.getBalance() - ammount);
+        originAccount.setBalance(originAccount.getBalance() - amount);
 
 
-        accountSend.setBalance(accountSend.getBalance() + ammount);
+        accountSend.setBalance(accountSend.getBalance() + amount);
 
 // Guarda los cambios en las cuentas y transacciones
         transactionRepository.save(transaction1);

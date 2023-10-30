@@ -1,5 +1,7 @@
 package com.mindhub.homebanking.controllers;
 
+import com.mindhub.homebanking.DTO.AccountDTO;
+import com.mindhub.homebanking.DTO.CardDTO;
 import com.mindhub.homebanking.DTO.ClientDTO;
 import com.mindhub.homebanking.models.*;
 import com.mindhub.homebanking.repositories.AccountRepository;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -121,6 +124,18 @@ public class ClientController {
         return new ResponseEntity<>("Account created success!",HttpStatus.CREATED);
 
     }
+    @GetMapping("/clients/current/accounts")
+    public List<AccountDTO> currentAccounts(Authentication authentication){
+        String email = authentication.getName();
+
+        Client client = clientRepository.findByEmail(email);
+        Set<Account> accountSet = client.getAccounts();
+        List<Account> accounts = new ArrayList<>(accountSet);
+
+        return accounts.stream()
+                .map(account -> new AccountDTO(account))
+                .collect(Collectors.toList());
+    }
 
     @PostMapping("/clients/current/cards")
     public ResponseEntity<Object> createdCard (Authentication authentication, @RequestParam CardType type,
@@ -153,6 +168,19 @@ public class ClientController {
         cardRepository.save(card);
 
         return new ResponseEntity<>("Card created successfully", HttpStatus.CREATED);
+    }
+
+    @GetMapping("/clients/current/cards")
+    public List<CardDTO> currentCards(Authentication authentication){
+        String email = authentication.getName();
+
+        Client client = clientRepository.findByEmail(email);
+        Set<Card> cardSet = client.getCards();
+        List<Card> cards = new ArrayList<>(cardSet);
+
+        return cards.stream()
+                .map(card -> new CardDTO(card))
+                .collect(Collectors.toList());
     }
 
 

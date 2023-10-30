@@ -8,7 +8,7 @@ import java.util.List;
 
 @RepositoryRestResource
 public interface AccountRepository extends JpaRepository <Account, Long> {
-    List<Account> findByClientId(Long clientId);
+
     boolean existsByNumber(String number);
 
     Account findByNumber (String number);

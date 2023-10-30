@@ -62,13 +62,12 @@ public class HomebankingApplication {
           LocalDate fiveYears = LocalDate.now().plusYears(5);
             // CUentas
           String accountNumber = accountService.generateUniqueAccountNumber();
-          Account VIN002 = new Account(tomorrow, 6500.00, accountNumber, client1);
-          Account VIN001 = new Account(now,5000.00,accountNumber,client1);
-          Account SAP001 = new Account(now, 2000.00, accountNumber, client2 );
-          Account SAP002 = new Account(now, 100000.00, accountNumber, client2);
+          Account VIN002 = new Account(tomorrow, 6500.00, "VIN-001", client1);
+          Account SAP001 = new Account(now, 2000.00, "VIN-003", client2 );
+          Account SAP002 = new Account(now, 100000.00, "VIN-002", client2);
           Account PAT001 = new Account(tomorrow, 300.00, accountNumber, client3);
 
-          accountRepository.save(VIN001);
+
           accountRepository.save(VIN002);
           accountRepository.save(SAP001);
           accountRepository.save(SAP002);
@@ -83,21 +82,17 @@ public class HomebankingApplication {
           LocalDateTime DT4 = LocalDateTime.of(LocalDate.now().plusDays(1), LocalTime.of(20,30));
           LocalDateTime DT5 = LocalDateTime.of(LocalDate.now().plusDays(2), LocalTime.of(8,30));
 
-          Transaction VIN1T001 = new Transaction(DT1, TransactionType.DEBIT, "Fernet for the Homies",-500.00, VIN001);
-          Transaction VIN1T002 = new Transaction(DT2, TransactionType.DEBIT, "phone credit", -100.00, VIN001 );
-          Transaction VIN1T003 = new Transaction(DT3, TransactionType.CREDIT, "Money for the night", 1000.00, VIN001);
+
           Transaction VIN2T001 = new Transaction(DT3, TransactionType.DEBIT, "Transfer for the night", -1000.00, VIN002);
-          Transaction VIN1T004 = new Transaction(DT4, TransactionType.DEBIT, "Party with the Homies", -700.00, VIN001);
+
 
           Transaction SAP1T001 = new Transaction(DT1, TransactionType.CREDIT, "Fernet for the Homies", 500.00, SAP001);
           Transaction SAP1T002 = new Transaction(DT2, TransactionType.CREDIT, "phone credit", 100.00, SAP001) ;
           Transaction SAP1T003 = new Transaction(DT4, TransactionType.CREDIT, "Party with the Homies", 700.00, SAP001);
           Transaction SAP1T004 = new Transaction(DT5, TransactionType.DEBIT, "New products", -1500.00, SAP001);
 
-          transactionRepository.save(VIN1T001);
-          transactionRepository.save(VIN1T002);
-          transactionRepository.save(VIN1T003);
-          transactionRepository.save(VIN1T004);
+
+
           transactionRepository.save(VIN2T001);
 
 
