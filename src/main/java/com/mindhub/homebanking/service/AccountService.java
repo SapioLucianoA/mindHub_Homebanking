@@ -18,7 +18,7 @@ public class AccountService {
         do {
             int num = rand.nextInt(99999999) + 1;
             num1 = String.format("%03d", num);
-        } while(accountRepository.existsBynumber("VIN-" + num1));
+        } while(accountRepository.existsByNumber("VIN-" + num1));
         return "VIN-" + num1;
     }
 }

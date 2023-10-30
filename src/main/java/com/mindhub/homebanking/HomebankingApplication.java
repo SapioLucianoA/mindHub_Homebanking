@@ -63,8 +63,8 @@ public class HomebankingApplication {
             // CUentas
           String accountNumber = accountService.generateUniqueAccountNumber();
           Account VIN002 = new Account(tomorrow, 6500.00, accountNumber, client1);
-          Account VIN001 = new Account(now,4700.00,accountNumber,client1);
-          Account SAP001 = new Account(now, 800.00, accountNumber, client2 );
+          Account VIN001 = new Account(now,5000.00,accountNumber,client1);
+          Account SAP001 = new Account(now, 2000.00, accountNumber, client2 );
           Account SAP002 = new Account(now, 100000.00, accountNumber, client2);
           Account PAT001 = new Account(tomorrow, 300.00, accountNumber, client3);
 

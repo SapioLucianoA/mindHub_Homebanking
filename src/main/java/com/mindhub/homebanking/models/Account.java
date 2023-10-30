@@ -1,5 +1,6 @@
 package com.mindhub.homebanking.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +82,10 @@ public class Account {
     public void addTransaction(Transaction transaction){
         transaction.setAccount(this);
         transactions.add(transaction);
+    }
+    @JsonBackReference
+    public Client getClient() {
+        return client;
     }
 
     @Override

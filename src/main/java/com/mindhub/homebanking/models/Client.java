@@ -94,6 +94,7 @@ public class Client {
         return id;
     }
 
+    @JsonManagedReference
     public Set<Account> getAccounts() {
         return accounts;
     }

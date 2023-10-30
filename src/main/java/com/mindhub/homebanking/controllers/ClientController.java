@@ -138,7 +138,7 @@ public class ClientController {
         // Obtén las tarjetas del cliente
         long count = cards.stream().filter(card -> card.getType().equals(type)).count();
 
-        // Verifica si ya existe una tarjeta del mismo tipo
+        // ya tenés 3 papu
         if(count >= 3){
             return new ResponseEntity<>("Client already has 3 cards of this type", HttpStatus.FORBIDDEN);
         }

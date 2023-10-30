@@ -3,17 +3,14 @@ package com.mindhub.homebanking.controllers;
 
 import com.mindhub.homebanking.DTO.TransactionDTO;
 import com.mindhub.homebanking.models.Account;
-import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.models.Transaction;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,4 +38,6 @@ public class TransactionController {
         List<Transaction> transactions = transactionRepository.findByAccountId(account.getId());
         return ResponseEntity.ok(transactions);
     }
+
+
 }
