@@ -54,11 +54,12 @@
             <div class="card cards cards-styles div-credit-card" v-for="account in accounts">
               <a class="w-100 text-decoration-none " v-bind:href="`./account.html?accountId=${account.id}`">
               <div class="d-flex flex-row justify-content-between align-items-center w-100 mt-2">
-                <h5 class="card-title  fs-2 text-dark fw-bold ">USD${{ Number(account.balance).toLocaleString('de-DE')}}</h5>
+                <h5 class="card-title  fs-2 ms-1 text-dark fw-bold ">USD${{ Number(account.balance).toLocaleString('de-DE')}}</h5>
                 <img src="../images/icons8-capybara-100.png" alt="banco image" class="Cards-logos">
                 </div>
               <div class="card-body ">
-                <p class="card-text text-dark fw-bold fs-3 ">Account Number:  {{ account.number }}</p>
+                <p class="card-text text-dark fw-bold fs-3 ">Account Number: </p>
+                <p class="card-text text-dark fw-bold fs-3 "> {{ account.number }}</p>
                 <p class="card-text text-dark fw-bold " > Creation Date:   {{account.currentDate}}</p>
                 <p class="card-text text-dark fs-2 text-center fw-bold text-decoration-underline" > See transactions </p>
               </div>
@@ -92,9 +93,10 @@
   </div>
     <footer >
       <div class="d-flex justify-content-center align-items-center">
-        <img src="../images/icons8-meta-50.png" alt="meta-social-icon" class="social">
-        <img src="../images/icons8-twitter-50.png" alt="twitter-social-icon" class="social">
-        <img src="../images/icons8-instagram-50.png" alt="instagram-social-icon" class="social">
+        <a href="https://es-la.facebook.com/"> <img src="../images/icons8-meta-50.png" alt="meta-social-icon" class="social"></a>
+        <a href="https://twitter.com/"><img src="../images/icons8-twitter-50.png" alt="twitter-social-icon" class="social"></a>
+       <a href="https://www.instagram.com/?hl=en"> <img src="../images/icons8-instagram-50.png" alt="instagram-social-icon" class="social"></a>
+       <a href="#"><img src="../images/icons8-whatsapp-100.png" alt="WhatsApp-icon" class="social"></a>
       </div>
       <div><h2 class="textHeader text-center">Cohort 51 JAVA</h2></div>
       <div><h2 class="textHeader text-center me-1">Sapio Luciano</h2></div>

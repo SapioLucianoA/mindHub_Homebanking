@@ -13,8 +13,8 @@
     <main>
         <div class="w-100 index-div"  id="app" >
             <div class="d-flex flex-column justify-content-center align-items-center">
-                <img src="./images/Capybank.png" alt="logo" class="logo-header">
-                <h1>PLease, put your capymail and yor capyssword</h1>
+                <a href="./index.html"><img src="./images/Capybank.png" alt="logo" class="logo-header"></a>
+                <h1>Please put your capymail and yor capyssword</h1>
                 <form class="w-50 mb-4" id="clientFormulary" @submit.prevent="submitForm">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label w-100">Email address</label>
@@ -24,7 +24,9 @@
                         <label for="password" class="form-label w-100">Password</label>
                         <input type="password" class="form-control w-100" v-model="password" id="password">
                     </div>
-                    <button type="submit" class="btn btn-primary w-50 allig-self-end">Sign in</button>
+                    
+                    <button type="submit" class="btn btn-primary w-50">Login</button>
+                  
                 </form>
 
             </div>

@@ -77,7 +77,7 @@ public class AccountController {
         return new ResponseEntity<>("The origin account number does not exist", HttpStatus.FORBIDDEN);
     }
     if (accountRepository.findByNumber(number2) == null){
-        return new ResponseEntity<>("The account to you wanbt to send not exist", HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>("The account to you want to send not exist", HttpStatus.FORBIDDEN);
     }
 
     //primero obtener el cliente
@@ -97,7 +97,7 @@ public class AccountController {
         if (originAccount.getBalance() < amount){
             return new ResponseEntity<>("The Amount cant be more than the balance of the account", HttpStatus.FORBIDDEN);
         }
-        // llamado a services y lo demas necesario para creat las transactiones
+        // llamado a services y lo demas necesario
         Account accountSend = accountRepository.findByNumber(number2);
 
         // crear dos transactiones number DEBIT y la number2 CREDIT

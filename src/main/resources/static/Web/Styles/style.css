@@ -1,18 +1,44 @@
 main{
     min-height: 100vh;
 }
+
 .header-nav{
-    background-color: rgb(16, 238, 16)!important;
+    background-color: rgb(207, 205, 205)!important;
 }
 .header-div{
     display: flex;
     justify-content: space-between;
     flex-direction: column-reverse;
 }
-.img-index{
-    height: 90%;
-    width: 80%;
+.image-index{
+    width: 100%;
+    object-fit: cover;
 }
+.div-of-cards-index{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+   
+    
+}
+
+.div-of-one-card{
+    display: flex;
+    flex-direction: column;
+}
+
+.index-images{
+    width: 50%;
+    height: 15rem;
+    transition: all 0.5s ease;
+
+}
+.index-images:hover{
+    transform: scale(1.1);
+}
+
 .index-div{
     display: flex;
     justify-content: center;
@@ -27,15 +53,14 @@ main{
     background-color: red;
     color: black;
     border-radius: 1rem;
+    margin-left: -0.5rem;
 }
 
 .div-home{
-    height: 30rem;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: black solid;
+    background-color: rgb(255, 255, 255);
 }
 .div-acccounts-main{
     justify-content: center;
@@ -55,10 +80,10 @@ main{
     width: 100%;
 }
 .cards-styles{
-    background-color: rgb(17, 223, 27);
+    background-color: rgb(25, 191, 197);
     color: black;
     font-weight: bold;
-    height: 17rem;
+    height: 20rem;
     width: 75%;
     margin-top: 3rem;
     margin-bottom: 1rem;
@@ -99,7 +124,7 @@ main{
     margin-right: 1rem;
 }
 body{
-    background-color: rgb(224, 92, 30);
+    background-color: rgb(255, 255, 255);
     
 }
 .logo-header{
@@ -115,15 +140,15 @@ body{
     border-radius: 0.5rem;
 }
 .Cards-logosCD{
-    width: 2rem;
-    height: 2rem;
+    width: 1rem;
+    height: 1rem;
     margin-left: 1rem;
     margin-right: 1rem;
     border-radius: 0.5rem;
     margin-top: -2rem;
 }
 .tittle{
-    color: brown;
+    color: rgb(117, 49, 3);
     margin-left: 1rem;
 }
 .h1-T{
@@ -131,10 +156,10 @@ body{
 }
 
 header{
-    background-color: rgb(29, 248, 0);
+    background-color: rgb(207, 205, 205);
 }
 .textHeader{
-    color: rgb(0, 0, 0) !important ;
+    color: rgb(155, 56, 10) !important ;
     font-size: 2rem;
     margin-right: 1rem;
 }
@@ -156,7 +181,7 @@ header{
 }
 footer{
     height: 15rem;
-    background-color: rgb(29, 248, 0);
+    background-color: rgb(207, 205, 205);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -183,18 +208,20 @@ footer{
 }
 .cardContainer{
     width: 75%;
-    margin-top: 3rem;
+    margin-top: 1rem;
     margin-bottom: 3rem;
     
-    height: 5rem;
+    height: 9.6rem;
 }
 .dateCards{
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 .ownerTypeCard{
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 .DEBIT{
     background-color: rgb(230, 56, 56);
@@ -244,7 +271,25 @@ footer{
     justify-content: center;
     align-items: center;
 }
-@media screen and (min-width: 600px) and (max-width: 992px){
+table{
+    border: #000000 solid 0.2rem;
+    border-collapse:collapse;
+    padding:5px;
+    width: 100%;
+}
+
+table td{
+    border: 0.1rem solid #000000;
+}
+.demo td {
+    border:2px solid #000000;
+    padding:5px;
+}
+@media screen and (min-width: 600px) and (max-width: 767px){
+
+    table{
+        width: 30rem;
+    }
     .cards-styles{
         width: 40%;
     }
@@ -266,7 +311,7 @@ footer{
         flex-direction: column;
     }
     .cardContainer{
-        height: 16rem;
+        height: 12rem;
         width: 50%;
     }
     .dateCards{
@@ -282,7 +327,23 @@ footer{
     }
 
 }
-@media screen and (min-width: 993px){
+@media screen and (min-width: 768px){
+    table{
+        width: 30rem;
+    }
+    .div-of-cards-index{
+        flex-direction: row;
+        flex-wrap:wrap ;
+    }
+    .div-of-one-card{
+        width: 50%;
+        
+        flex-direction: row;
+    }
+    .image-index{
+        object-fit: inherit ;
+        height: 40rem;
+    }
     .cards-styles{
         width: 25rem;
     }
@@ -301,22 +362,24 @@ footer{
         height: 5rem;
     }
     .debitandCredirCards{
-        flex-wrap: wrap;
+        flex-direction: column;
     }
     .cardContainer{
-        height: 15rem;
-        width: 50%;
+        height: 12rem;
+        width: 55%;
         margin-left: 1rem;
         margin-right: 1rem;
+
     }
     .dateCards{
         flex-direction: row;
         justify-content: space-between;
+        font-size: small;
     }
     .Cards-logosCD{
         margin-top: 0.1rem;
-        width: 3rem;
-        height: 3rem;
+        width: 2rem;
+        height: 2rem;
     }
     .containerAllCards{
         display: flex;
@@ -327,7 +390,7 @@ footer{
         width: 50%;
     }
     .ownerTypeCard{
-        font-size: 1.6rem;
+        font-size: 1rem;
     }
     .creditDebitCards{
         font-size: medium;

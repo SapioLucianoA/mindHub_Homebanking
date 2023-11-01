@@ -19,7 +19,6 @@ import javax.servlet.http.HttpSession;
 public class WebAuthorization extends WebSecurityConfigurerAdapter   {
 
     @Override
-
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()

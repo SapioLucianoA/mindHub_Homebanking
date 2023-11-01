@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
 
     @Autowired
-    ClientRepository clientRepository;
+    private ClientRepository clientRepository;
 
 
     @Override
@@ -31,7 +31,7 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
                         AuthorityUtils.createAuthorityList(String.valueOf(client.getClientRole())));
             }
             else {
-                throw new UsernameNotFoundException("Unknown client"+ inputName);
+                throw new UsernameNotFoundException("Unknown client email" + inputName);
             }
         });
 

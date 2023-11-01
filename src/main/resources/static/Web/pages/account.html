@@ -31,12 +31,7 @@
                 <li>
                   <a class="nav-link active ms-2"  href="./transfer.html" > <span class="textHeader fw-bold " > transfers </span></a>
                 </li>
-                <li>
-                  <a class="nav-link active ms-2"  href="./transfer.html" > <span class="textHeader fw-bold " > transfers </span></a>
-                </li>
-                <li>
-                  <a class="nav-link active ms-2"  href="#"  @click="logout" > <span class="textHeader fw-bold " > Log out </span></a>
-                </li>
+              
                 
               </ul>
             </div>
@@ -53,15 +48,35 @@
         <div >
         <h2 class="text-center" >Wel-capy, to your transactions</h2>
         
-           <div class="d-flex justify-content-center align-items-center" v-for="transaction in transactions">
-            <div class="d-flex flex-column">
-              <ul class="ul">
-                <li class="text-center"><span class="fw-bold">Transaction type:</span> {{transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1).toLowerCase()}} </li>
-                <li class="text-center " v-bind:class="{ 'DEBIT': transaction.type === 'DEBIT', 'CREDIT': transaction.type === 'CREDIT'} "><span class="fw-bold">Amount:</span> {{Number(transaction.amount).toLocaleString('de-DE')}}</li>
-                <li class="text-center"><span class="fw-bold">Date:</span> {{transaction.date}}</li>
-                <li class="text-center"><span class="fw-bold">Description:</span> {{transaction.description}}</li>
-            </ul>
-          </div>
+           <div class="d-flex justify-content-center align-items-center mt-3 ms-2" v-for="transaction in transactions">
+            <div>
+              <table v-bind:class="{ 'DEBIT': transaction.type === 'DEBIT', 'CREDIT': transaction.type === 'CREDIT'} ">
+                <thead>
+                <tr>
+                  <th>transaction ID:</th>
+                  <th>  {{transaction.id}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>Transaction type:</td>
+                  <td>{{transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1).toLowerCase()}} </td>
+                </tr>
+                <tr>
+                  <td >Amount:</td>
+                  <td >{{Number(transaction.amount).toLocaleString('de-DE')}}</td>
+                </tr>
+                <tr>
+                  <td>Date:</td>
+                  <td>{{transaction.date}}</td>
+                </tr>
+                <tr>
+                  <td>Description:</td>
+                  <td>{{transaction.description}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
         </div>
         <h2 class="message-h2 text-center w-100">
           {{message}}
@@ -69,24 +84,17 @@
     </div>
 </div>
 
-            <!-- <div class="w-75 rounded mt-4 mb-2" v-bind:style="{ backgroundColor: transaction.type === 'DEBIT' ? 'red' : 'green' }">
-            <h4 class="text-center">Transaction Type: {{transaction.type}} </h4>
-            <div>
-              <h5 class="text-center fw-bold"> Amount:  {{Number(transaction.amount).toLocaleString('de-DE')}} </h5>
-                <p class="text-center fw-bold">Date: {{transaction.date}}</p>
-                <p class="text-center fw-bold" >Description: {{transaction.description}}</p>
-                
-            </div>
-            </div> -->
+            
             
     </div>
     </main>
   </div>
     <footer >
       <div class="d-flex justify-content-center align-items-center">
-        <img src="../images/icons8-meta-50.png" alt="meta-social-icon" class="social">
-        <img src="../images/icons8-twitter-50.png" alt="twitter-social-icon" class="social">
-        <img src="../images/icons8-instagram-50.png" alt="instagram-social-icon" class="social">
+        <a href="https://es-la.facebook.com/"> <img src="../images/icons8-meta-50.png" alt="meta-social-icon" class="social"></a>
+        <a href="https://twitter.com/"><img src="../images/icons8-twitter-50.png" alt="twitter-social-icon" class="social"></a>
+       <a href="https://www.instagram.com/?hl=en"> <img src="../images/icons8-instagram-50.png" alt="instagram-social-icon" class="social"></a>
+       <a href="#"><img src="../images/icons8-whatsapp-100.png" alt="WhatsApp-icon" class="social"></a>
       </div>
       <div><h2 class="textHeader text-center">Cohort 51 JAVA</h2></div>
       <div><h2 class="textHeader text-center me-1">Sapio Luciano</h2></div>

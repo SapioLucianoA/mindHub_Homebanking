@@ -27,20 +27,6 @@ createApp({
     
   },
   computed: {
-    logout() {
-      axios.post('/api/logout')
-        .then(response => {
-          
-          console.log(response);
-          
-          // Redirige a "./web/index.html"
-          window.location.href = '/web/index.html';
-        })
-        .catch(error => {
-          
-          console.error(error);
-        });
-    },
     checktransactions() {
       if (this.transactions.length === 0) {
         this.message = 'You dont have any capytransactions to see';
