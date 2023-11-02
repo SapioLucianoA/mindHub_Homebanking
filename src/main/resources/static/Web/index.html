@@ -49,19 +49,40 @@
     </header>
 
     <main>
-      <div class="w-100 index-div mb-4">
+      <div id="app">
+      <div class="w-100 index-div mb-4" >
         <img src="./images/Leonardo_Vision_XL_A_whimsical_Capybara_donning_a_top_hat_and_1.jpg" alt="index image" class="image-index">
-        <div class="div-home">
-          <h2 class="text-center fs-1">Welcome to Capybank</h2>
-          <p class="text-center fs-2">Where your money grows like the Sturies</p>
-        </div>
-      </div> 
+      </div>
+      <div class="allIndex">
+      <div class="login-register rounded"> 
+      <div class="d-flex flex-column justify-content-center align-items-center mt-2 ">
+        <h2  class="text-center">Login</h2>
+        <a href="./index.html"><img src="./images/Capybank.png" alt="logo" class="logo-header"></a>
+        <h2 class="text-center">Use your email and your password</h2>
+        <form class="w-75 mb-4" id="clientFormulary" @submit.prevent="submitForm">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label w-100">Email address</label>
+                <input type="email" class="form-control w-100" v-model="email" id="email">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label w-100">Password</label>
+                <input type="password" class="form-control w-100" v-model="password" id="password">
+            </div>
+            <div class="d-flex justify-content-center align-items-center flex-column">
+            <button type="submit" class="btn btn-primary w-50">Login</button>
+            <p class="text-center mt-2">or</p>
+            <a href="./register.html" class="fs-4 fw-bold"> <p class="text-center">Register</p></a>
+          </div>
+        </form>
+    </div>
+    <img src="./images/loginIMG.png" alt="imng login" class="login-img">
+  </div>
       <div class="w-100 div-of-cards-index">
         <div class="div-of-one-card mb-3">
         <img src="./images/Banner2.jpg" alt="credit cards in hands image" class="index-images rounded">
         <div class="mt-2 mb-2">
-          <h2 class="text-center">Apply for your card</h2>
-          <p class="text-center fw-bold">You only need one account</p>
+          <h2 class="text-center text-brown">Apply for your card</h2>
+          <p class="text-center fw-bold ">You only need one account</p>
            <p class="text-center fw-bold">the first one is free and you don't pay maintenance</p> 
             <p class="text-center fw-bold">enjoy discounts in participating businesses and a 5% cashback</p>
         </div>
@@ -69,7 +90,7 @@
         <div class="div-of-one-card mb-3">
           <img src="./images/banner3.png" alt="discounts" class="index-images rounded">
           <div class="mt-2 ">
-          <h2 class="text-center">Pay with our cards and receive discounts:</h2>
+          <h2 class="text-center text-brown">Pay with our cards and receive discounts:</h2>
           <p class="text-center fw-bold"> Monday to Thursday 15% on pizzas</p>
           <p class="text-center fw-bold">Wednesdays 20% on women's day</p>
           <p class="text-center fw-bold">Saturdays and Sundays 10% on drinks</p>
@@ -78,7 +99,7 @@
         <div  class="div-of-one-card mb-3">
           <img src="./images/banner4.png" alt="comunicating" class="index-images rounded">
           <div class="mt-2 ">
-            <h2 class="text-center">Chat with us 24/7 on WhatsApp</h2>
+            <h2 class="text-center text-brown">Chat with us 24/7 on WhatsApp</h2>
             <p class="text-center fw-bold">It doesn't matter when you have doubts.</p>
             <p class="text-center fw-bold">We are always there for you, every day and at any time</p>
           </div>
@@ -86,15 +107,14 @@
         <div class="div-of-one-card mb-3">
           <img src="./images/banner5.png" alt="old man with tablet" class="index-images rounded">
           <div class="mt-2 " >
-            <h2 class="text-center">You can take out loans anywhere</h2>
+            <h2 class="text-center text-brown">You can take out loans anywhere</h2>
             <p class="text-center fw-bold"> It's easy, fast and with the minimum requirements of the market</p>
             <p class="text-center fw-bold">We will be 24/7 to answer any query on Whatsapp</p>
           </div>
         </div>
       </div>
-
-
       </div>
+    </div>
   </main>
 
     <footer >
@@ -110,6 +130,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="./js/index.js"></script>
+    <script src="./js/login.js"></script>
 </body>
 </html>

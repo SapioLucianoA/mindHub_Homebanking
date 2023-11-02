@@ -44,18 +44,20 @@
         </header>
 <main>
 <div >
+  <div class="w-100 d-flex justify-content-center align-items-center">
+    <div class=" formSendTransactions mt-5 ">
     <div class="w-100 d-flex flex-column justify-content-center align-items-center" >
         <form  @submit.prevent="newCard" class="w-50  d-flex justify-content-center align-items-center flex-column mt-3 ">
             <h2 class="text-center">Complete the options to create a card</h2>
-            <p class="text-center">remember the first is free! c`mon and be capybara</p>
+            <p class="text-center fs-4">Remember the first is free!</p>
         <input class="form-control mt-3" type="text" placeholder="First Name" aria-label="default input example" v-model="name" id="name" >
         <input class="form-control mt-3" type="text" placeholder="Last Name" aria-label="default input example" v-model="lastName" id="lastName" >
         <div class="form-floating w-100 mt-3">
-            <select class="form-select" id="floatingSelect" aria-label="Floating label select example" v-model="type" >
+            <select class="form-select " id="floatingSelect" aria-label="Floating label select example" v-model="type" >
               <option value="CREDIT">Credit card</option>
               <option value="DEBIT">Debit card</option>
             </select>
-            <label for="floatingSelect text-dark">Card type (Only can have 3 cards of one type)</label>
+            <label for="floatingSelect text-dark">Card type (3 cards of 1 type for CLient)</label>
           </div>
           <div class="form-floating w-100 mt-3">
             <select class="form-select" id="floatingSelect" aria-label="Floating label select example" v-model="color" >
@@ -65,9 +67,10 @@
             </select>
             <label for="floatingSelect text-dark">Select your Card color</label>
           </div>
-          <button type="submit" class="btn btn-primary w-50 mt-3">New Card</button>
+          <button type="submit" class="btn btn-primary w-50 mb-3 mt-3">New Card</button>
         </form>
     </div>
+</div>
 </div>
 </main>
 </div>

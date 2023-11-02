@@ -31,7 +31,7 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
                         AuthorityUtils.createAuthorityList(String.valueOf(client.getClientRole())));
             }
             else {
-                throw new UsernameNotFoundException("Unknown client email" + inputName);
+                throw new UsernameNotFoundException("Unknown client email or password" );
             }
         });
 

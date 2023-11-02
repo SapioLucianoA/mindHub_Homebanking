@@ -10,27 +10,57 @@
 
 </head>
 <body>
+    <header>
+        <div class="d-flex  header-div" >
+            <h1 class="display-none" >Capybank</h1>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary header-nav ms-1">
+          <div class="container-fluid ">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active " aria-current="page" href="./index.html"> <span class="textHeader fw-bold" > Home</a>
+                </li>
+                <li>
+                    <a class="nav-link active" href="./register.html"> <span class="textHeader fw-bold " > Sing up</span></a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+            
+    <img src="./images/Capybank.png" alt="Capybank " class="logo-header">
+
+  </div>
+    </header>
+     
     <main>
         <div class="w-100 index-div"  id="app" >
-            <div class="d-flex flex-column justify-content-center align-items-center">
-                <a href="./index.html"><img src="./images/Capybank.png" alt="logo" class="logo-header"></a>
-                <h1>Please put your capymail and yor capyssword</h1>
-                <form class="w-50 mb-4" id="clientFormulary" @submit.prevent="submitForm">
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label w-100">Email address</label>
-                        <input type="email" class="form-control w-100" v-model="email" id="email">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label w-100">Password</label>
-                        <input type="password" class="form-control w-100" v-model="password" id="password">
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary w-50">Login</button>
-                  
-                </form>
-
-            </div>
-        </div> 
+          <div class="login-register rounded"> 
+            <div class="d-flex flex-column justify-content-center align-items-center mt-2 ">
+              <a href="./index.html"><img src="./images/Capybank.png" alt="logo" class="logo-header"></a>
+              <h1 class="text-center">Use your email and your password</h1>
+              <form class="w-75 mb-4" id="clientFormulary" @submit.prevent="submitForm">
+                  <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label w-100">Email address</label>
+                      <input type="email" class="form-control w-100" v-model="email" id="email">
+                  </div>
+                  <div class="mb-3">
+                      <label for="password" class="form-label w-100">Password</label>
+                      <input type="password" class="form-control w-100" v-model="password" id="password">
+                  </div>
+                  <div class="d-flex justify-content-center align-items-center flex-column">
+                  <button type="submit" class="btn btn-primary w-50">Login</button>
+                  <p class="text-center mt-2">or</p>
+                  <a href="./register.html" class="fs-4 fw-bold"> <p class="text-center">Register</p></a>
+                </div>
+              </form>
+          </div>
+          <img src="./images/loginIMG.png" alt="imng login" class="login-img">
+        </div>
+        </div>
     </main>
 
     <footer >

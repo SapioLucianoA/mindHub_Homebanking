@@ -1,7 +1,24 @@
 main{
     min-height: 100vh;
 }
-
+.text-brown{
+    color: rgb(204, 92, 17);
+}
+.allIndex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.login-register{
+    background-color:rgb(204, 92, 17) ;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    
+}
 .header-nav{
     background-color: rgb(207, 205, 205)!important;
 }
@@ -19,14 +36,14 @@ main{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 3rem;
-   
-    
+    margin-top: 3rem;   
 }
 
 .div-of-one-card{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .index-images{
@@ -80,7 +97,7 @@ main{
     width: 100%;
 }
 .cards-styles{
-    background-color: rgb(25, 191, 197);
+    background-color: rgb(207, 205, 205);
     color: black;
     font-weight: bold;
     height: 20rem;
@@ -101,7 +118,7 @@ main{
 }
 .newAccountImage{
     height: 17rem;
-    width: 40%;
+    width: 75%;
     cursor: pointer;
 }
 .creditDebitCards{
@@ -166,7 +183,7 @@ header{
 .social{
     width: 3rem;
     height: 3rem;
-    margin-right: 2rem!important;
+    margin-right: 1rem!important;
     margin-left: 1rem;
 }
 .display-none{
@@ -259,6 +276,13 @@ footer{
     color: black;
     font-weight: bold;
 }
+.formSendTransactions{
+ background-color: rgb(204, 92, 17);
+ justify-content: center;
+ align-items: center;
+ width: 85%;
+ border-radius: 2rem;
+}
 .superiorofTranser{
     display: flex;
     flex-direction: column;
@@ -285,7 +309,20 @@ table td{
     border:2px solid #000000;
     padding:5px;
 }
+.login-img{
+    height: auto;
+    width: 100%;
+}
+button{
+    background-color: rgb(207, 205, 205)!important;
+    color: #000000 !important;
+    font-weight: bold !important;
+
+}
 @media screen and (min-width: 600px) and (max-width: 767px){
+    .newAccountImage{
+        width: 40%;
+    }
 
     table{
         width: 30rem;
@@ -328,12 +365,23 @@ table td{
 
 }
 @media screen and (min-width: 768px){
+    .formSendTransactions{
+        width: 40%;
+    }
+    .newAccountImage{
+        width: 30%;
+        height: 20rem;
+    }
     table{
         width: 30rem;
     }
     .div-of-cards-index{
         flex-direction: row;
         flex-wrap:wrap ;
+    }
+    .login-register{
+        width: 75%;
+        flex-direction: row;
     }
     .div-of-one-card{
         width: 50%;
@@ -394,5 +442,8 @@ table td{
     }
     .creditDebitCards{
         font-size: medium;
+    }
+    .login-img{
+        height: auto;
     }
 }

@@ -48,7 +48,7 @@ public class HomebankingApplication {
 
           clientRepository.save(client1);
           clientRepository.save(client2);
-          Client client3 = new Client("Elsa", "Patilla", "123@123.com", passwordEncoder.encode("123"), ClientRole.CLIENT);
+          Client client3 = new Client("Elsa", "Patilla", "123@123.com", passwordEncoder.encode("123"), ClientRole.ADMIN);
 
           clientRepository.save(client3);
 
@@ -65,7 +65,7 @@ public class HomebankingApplication {
           Account VIN002 = new Account(tomorrow, 6500.00, "VIN-001", client1);
           Account SAP001 = new Account(now, 2000.00, "VIN-003", client2 );
           Account SAP002 = new Account(now, 100000.00, "VIN-002", client2);
-          Account PAT001 = new Account(tomorrow, 300.00, accountNumber, client3);
+          Account PAT001 = new Account(tomorrow, 30000.00, accountNumber, client3);
 
 
           accountRepository.save(VIN002);

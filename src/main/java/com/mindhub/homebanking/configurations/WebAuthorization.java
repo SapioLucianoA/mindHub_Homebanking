@@ -24,16 +24,25 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter   {
         http.authorizeRequests()
 
                 .antMatchers("/h2/console").hasAuthority("ADMIN")
-                .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
-                .antMatchers("/rest/**").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/clients").hasAuthority("ADMIN")
+                .antMatchers("/web/pages/manager.html").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.POST, "/api/login").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/logout").hasAnyAuthority("ADMIN", "CLIENT")
-                .antMatchers(HttpMethod.POST, "/api/transactions").hasAnyAuthority("ADMIN", "CLIENT")
-                .antMatchers(HttpMethod.GET, "/api/transactions").hasAnyAuthority("ADMIN", "CLIENT")
+                .antMatchers(HttpMethod.POST, "/api/logout").authenticated()
+                .antMatchers("/rest/**").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/transactions").authenticated()
+                .antMatchers(HttpMethod.GET, "/api/transactions").authenticated()
                 .antMatchers("/web/index.html").permitAll()
                 .antMatchers("/web/login.html").permitAll()
                 .antMatchers("/web/register.html").permitAll()
                 .antMatchers("/web/pages/**").authenticated()
+                .antMatchers("/web/styles/**", "/web/js/**", "/web/images/**", "/web/css/**" ).permitAll()
+                .antMatchers(HttpMethod.POST, "/api/clients/current/cards").authenticated()
+                .antMatchers(HttpMethod.POST, "/api/clients/current/accounts").authenticated()
+                .antMatchers(HttpMethod.GET, "/api/accounts/{accountId}").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/clients/current/cards").authenticated()
+                .antMatchers(HttpMethod.GET,"/api/clients/{id}").hasAuthority("ADMIN")
+                .antMatchers("/api/**").authenticated()
+
                 ;
 
 

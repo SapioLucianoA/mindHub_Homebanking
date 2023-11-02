@@ -44,13 +44,15 @@
 
     <main>
       <div id="app">
+        <div class="w-100 d-flex justify-content-center align-items-center">
+          <div class=" formSendTransactions mt-5 ">
         <div class="superiorofTranser mt-3">
           <h2 class="text-center">where your transfer go?</h2>
           <div  class="radios-buttons" >
-          <input type="radio" id="ownAccount" value="ownAccount" v-model="picked">
-          <label for="ownAccount" class="me-3">my account</label>
+          <input type="radio" id="ownAccount" value="ownAccount" v-model="picked" class="ms-2">
+          <label for="ownAccount" class="ms-2 me-3">My account</label>
           <input type="radio" id="otherAccount" value="otherAccount" v-model="picked" class="ms-3">
-          <label for="otherAccount"> other client account </label>
+          <label for="otherAccount" class="ms-2"> Other client account </label>
         </div>
         </div>
         <form @submit.prevent="SendTransaction" class="d-flex flex-column w-100 justify-content-center align-items-center">
@@ -71,10 +73,10 @@
           <input type="text" placeholder="use point to separed the cents" v-model="amount" class="w-50 mt-2">
 
           <textarea id="miTextarea" name="miTextarea" v-model="description" class="w-50 mt-2"></textarea>
-          <button type="submit" class="btn btn-primary  w-50 mt-3">Send Transaction</button>
+          <button type="submit" class="btn btn-primary  mb-3 mt-3">Send Transaction</button>
         </form>
       </div>
-      
+    </div>
         </div> 
     </main>
   
