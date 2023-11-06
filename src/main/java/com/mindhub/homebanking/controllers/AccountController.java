@@ -79,6 +79,9 @@ public class AccountController {
     if (accountRepository.findByNumber(number2) == null){
         return new ResponseEntity<>("The account to you want to send not exist", HttpStatus.FORBIDDEN);
     }
+    if (amount <= 0){
+        return new ResponseEntity<>("The amount cant be 0 or less", HttpStatus.FORBIDDEN);
+    }
 
     //primero obtener el cliente
     //segundo buscar el cliente authenticado

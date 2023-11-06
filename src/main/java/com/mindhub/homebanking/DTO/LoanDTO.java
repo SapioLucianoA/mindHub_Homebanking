@@ -13,8 +13,7 @@ public class LoanDTO {
     private Double maxAmount;
 
     private List<Integer> payment;
-    @JsonManagedReference
-    private List<ClientLoanDTO> loans;
+
 
     public LoanDTO(Loan loan){
         id= loan.getId();
@@ -39,7 +38,5 @@ public class LoanDTO {
         return payment;
     }
 
-    public List<ClientLoanDTO> getClientLoans() {
-        return loans;
-    }
+
 }

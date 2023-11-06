@@ -2,13 +2,18 @@ package com.mindhub.homebanking.controllers;
 
 
 import com.mindhub.homebanking.DTO.ClientDTO;
+import com.mindhub.homebanking.DTO.LoanApplicationDTO;
 import com.mindhub.homebanking.DTO.LoanDTO;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.models.Loan;
+import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.LoanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.PrivateKey;
 import java.util.List;
@@ -21,8 +26,10 @@ public class LoanController {
 
     @Autowired
     private LoanRepository loanRepository;
+    @Autowired
+    private AccountRepository accountRepository;
 
-    @RequestMapping("/loans")
+    @GetMapping("/loans")
     public List<LoanDTO> getAllLoad() {
 
         List<Loan> loans = loanRepository.findAll();
@@ -36,5 +43,6 @@ public class LoanController {
 
         return loanDTOS;
     }
+
 
 }

@@ -11,6 +11,17 @@ main{
     align-items: center;
     width: 100%;
 }
+.fontIndex{
+    font-family: sans-serif;
+    height: 15rem;
+    
+}
+.loanCreated{
+    display: flex;
+    flex-direction: column;
+    background-color:rgb(204, 92, 17) ;
+    width: 85%;
+}
 .login-register{
     background-color:rgb(204, 92, 17) ;
     border-radius: 2rem;
@@ -320,6 +331,7 @@ button{
 
 }
 @media screen and (min-width: 600px) and (max-width: 767px){
+    
     .newAccountImage{
         width: 40%;
     }
@@ -365,6 +377,9 @@ button{
 
 }
 @media screen and (min-width: 768px){
+    .fontIndex{
+        height: 16rem;
+    }
     .formSendTransactions{
         width: 40%;
     }
@@ -373,14 +388,14 @@ button{
         height: 20rem;
     }
     table{
-        width: 30rem;
+        width: 100%;
     }
     .div-of-cards-index{
         flex-direction: row;
         flex-wrap:wrap ;
     }
     .login-register{
-        width: 75%;
+        width: 60%;
         flex-direction: row;
     }
     .div-of-one-card{
@@ -390,7 +405,7 @@ button{
     }
     .image-index{
         object-fit: inherit ;
-        height: 40rem;
+        height: 23rem;
     }
     .cards-styles{
         width: 25rem;
@@ -445,5 +460,8 @@ button{
     }
     .login-img{
         height: auto;
+    }
+    .loanCreated{
+        width: 50%;
     }
 }

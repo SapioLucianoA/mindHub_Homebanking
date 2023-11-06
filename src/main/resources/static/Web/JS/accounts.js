@@ -14,7 +14,7 @@ createApp({
 
   created () {
     axios
-      .get('http://localhost:8080/api/clients/current')
+      .get('/api/clients/current')
       .then(response => {
         console.log(response.data.name)
         this.clients = response.data;

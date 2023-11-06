@@ -22,30 +22,29 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter   {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-
-                .antMatchers("/h2/console").hasAuthority("ADMIN")
-                .antMatchers("/web/pages/manager.html").hasAuthority("ADMIN")
-                .antMatchers(HttpMethod.GET,"/api/clients/{id}").hasAuthority("ADMIN")
-                .antMatchers(HttpMethod.GET, "/api/accounts/{accountId}").hasAuthority("ADMIN")
-                .antMatchers("/rest/**").hasAuthority("ADMIN")
-
+                .antMatchers( "/web/js/**", "/web/images/**", "/web/css/**" ).permitAll()
                 .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
                 .antMatchers("/web/index.html").permitAll()
                 .antMatchers("/web/login.html").permitAll()
-                .antMatchers("/web/styles/**", "/web/js/**", "/web/images/**", "/web/css/**" ).permitAll()
+
                 .antMatchers("/web/register.html").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/login").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/logout").authenticated()
-
-                .antMatchers(HttpMethod.POST, "/api/transactions").authenticated()
-                .antMatchers(HttpMethod.GET, "/api/transactions").authenticated()
+                .antMatchers(HttpMethod.POST, "/api/logout", "/api/clients/current/accounts","/api/clients/current/cards","/api/transactions").authenticated()
+                .antMatchers(HttpMethod.GET, "/api/accounts/{accountId}", "/api/clients/current/cards","/api/clients/current","/api/transactions","/api/clients/current/accounts").authenticated()
                 .antMatchers("/web/pages/**").authenticated()
-                .antMatchers(HttpMethod.POST, "/api/clients/current/cards").authenticated()
-                .antMatchers(HttpMethod.POST, "/api/clients/current/accounts").authenticated()
-                .antMatchers(HttpMethod.GET, "/api/clients/current/cards").authenticated()
-                .antMatchers("/api/**").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/loans").authenticated()
+                .antMatchers(HttpMethod.POST, "/api/loan").authenticated()
+                .antMatchers(HttpMethod.GET, "/api/clients").hasAuthority("ADMIN")
 
-                ;
+                .antMatchers(HttpMethod.GET,"/api/clients/{id}").hasAuthority("ADMIN")
+                .antMatchers("/h2/console").hasAuthority("ADMIN")
+                .antMatchers("/web/pages/manager.html").hasAuthority("ADMIN")
+                .antMatchers("/rest/**").hasAuthority("ADMIN")
+                .antMatchers("/api/**").hasAuthority("ADMIN")
+                .anyRequest().denyAll();
+
+
+
 
 
 

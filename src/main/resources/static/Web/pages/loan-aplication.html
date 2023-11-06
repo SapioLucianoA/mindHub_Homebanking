@@ -6,7 +6,7 @@
         <link rel="shortcut icon" href="../images/Favicon.png" type="image/x-icon">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="../css/style.css">
-        <title>Homebanking | Created Cards</title>
+        <title>Homebanking | Loans</title>
     </head>
     <body>
       
@@ -29,10 +29,10 @@
                       <a class="nav-link active" href="./cards.html"> <span class="textHeader fw-bold " > Cards </span></a>
                     </li>
                     <li>
-                      <a class="nav-link active ms-2"  href="#" > <span class="textHeader fw-bold " > transfers </span></a>
+                      <a class="nav-link active ms-2"  href="./transfer.html" > <span class="textHeader fw-bold " > Transfers </span></a>
                     </li>
                     <li>
-                      <a class="nav-link active ms-2"  href="./loan-aplication.html" > <span class="textHeader fw-bold " > Loans </span></a>
+                      <a class="nav-link active ms-2"  href="#" > <span class="textHeader fw-bold " > Loans </span></a>
                     </li>
                   </ul>
                 </div>
@@ -46,40 +46,78 @@
 
 
     <main>
-      <div id="app">
-        <div class="w-100 d-flex justify-content-center align-items-center">
-          <div class=" formSendTransactions mt-5 ">
-        <div class="superiorofTranser mt-3">
-          <h2 class="text-center">where your transfer go?</h2>
-          <div  class="radios-buttons" >
-          <input type="radio" id="ownAccount" value="ownAccount" v-model="picked" class="ms-2">
-          <label for="ownAccount" class="ms-2 me-3">My account</label>
-          <input type="radio" id="otherAccount" value="otherAccount" v-model="picked" class="ms-3">
-          <label for="otherAccount" class="ms-2"> Other client account </label>
-        </div>
-        </div>
-        <form @submit.prevent="SendTransaction" class="d-flex flex-column w-100 justify-content-center align-items-center">
-          <h3>From:</h3>
-          <select v-model="number" class="w-50">
-            <option v-for="account in accounts" :value="account.number">
-              {{ account.number }}
+      <div class="w-100 index-div" id="app">
+        <div class=" loanCreated rounded mt-5">
+        <form @submit.prevent="sendLoan" class="d-flex flex-column w-100 justify-content-center align-items-center">
+          <h2 class="text-center mt-2" >Select your Loan</h2>
+          <div class="d-flex flex-row flex-wrap">
+            
+            <div v-for="loan in loans" :key="loan.id" class="form-check">
+              <input class="form-check-input " type="radio" name="loanRadio" :id="loan.id" :value="loan.id" v-model="selectedLoan">
+              <label class="form-check-label me-2" :for="loan.id">
+                {{ loan.name }}
+              </label>
+            </div>
+          </div>
+          
+        
+        <div v-if="selectedLoan">
+          <label for="paymentSelect">number of payments:</label>
+          <select class="form-select" id="paymentSelect" v-model="payment">
+            <option v-for="payment in getLoanById(selectedLoan).payment" :key="payment" :value="payment">
+              {{ payment }}
             </option>
           </select>
-          <h3>To:</h3>
-          <select v-if="picked === 'ownAccount'" v-model="number2" class="w-50">
-            <option v-for="account in accounts" :value="account.number" class="option-color">
-              {{ account.number }}
-            </option>
-          </select>
-          <input v-else type="text" v-model="number2" placeholder="Account number" class="w-50 mt-2">
-          <h2 class="text-center" >Amount</h2>
-          <input type="text" placeholder="use point to separed the cents" v-model="amount" class="w-50 mt-2">
-
-          <textarea id="miTextarea" name="miTextarea" v-model="description" class="w-50 mt-2"></textarea>
-          <button type="submit" class="btn btn-primary  mb-3 mt-3">Send Transaction</button>
-        </form>
-      </div>
+        </div>
+        <div v-if="selectedLoan" class="d-flex flex-column justify-content-center align-items-center">
+          <p class="text-center fw-bold fs-3">Max. amount: {{Number(getLoanById(selectedLoan).maxAmount).toLocaleString('de-DE') }}</p>
+          <label for="amountInput" class="text-center fs-5">Enter the amount without any dots or commas <span class="fw-bold"> (the payment have 20% plus) </span>:</label>
+          <input type="number" id="amountInput" v-model="amount">
+        </div>
+        <h2 class="text-center">Select your account to deposit the Loan</h2>
+        <div class="d-flex flex-row flex-wrap">
+          
+          <div v-for="account in accounts" :key="account.number" class="form-check">
+            <input type="radio" :id="account.number" :value="account.number" v-model="accountNumber">
+            <label :for="account.number">{{ account.number }}</label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary  mb-3 mt-3">Create loan</button>
+      </form>
     </div>
+
+<div>
+  <div class="loanCreated w-100 mt-5 ">
+    
+    <table >
+      <thead>
+        <tr>
+          <th colspan="5" class="text-center">Your Loan:</th>
+        </tr>
+      </thead>
+        <tbody>
+      <tr>
+        <td>Loan type:</th>
+        <td>Amount:</th>
+        <td>Account number:</th>
+        <td>payments:</th>
+        <td>total for payment:</th>
+      </tr>
+      
+      
+      <tr>
+        <td v-if="selectedLoan">{{ getLoanById(selectedLoan).name }}</td>
+        <td v-if="amount">{{ Number(amount *1.2).toLocaleString('de-DE') }}</td>
+        <td v-if="accountNumber">{{ accountNumber }}</td>
+        <td v-if="payment">{{ payment }}</td>
+        <td>{{ (amount * 1.2) / payment}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  
+</div>
+
         </div> 
     </main>
   
@@ -99,7 +137,7 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     
-    <script src="../js/transfer.js"></script>
+    <script src="../js/loan-aplication.js"></script>
     
 </body>
 </html>

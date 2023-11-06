@@ -19,8 +19,13 @@ methods: {
         window.location.href = `/web/pages/accounts.html`;
         })
         .catch(error => {
-            alert(error);
-        });
+            if (error.response) {
+                // La solicitud se hizo y el servidor respondió con un código de estado
+                // que cae fuera del rango de 2xx
+                console.log(error.response.data);
+                alert(error.response.status + " " + error.response.data);
+                console.log(error.response.headers);
+        }});
     },
     register(){
         axios.post(`/api/clients`, `name=${this.name}&lastName=${this.lastName}&email=${this.email}&password=${this.password}`  
@@ -30,8 +35,13 @@ methods: {
             window.location.href = `/web/index.html`
         })
         .catch(error => {
-            alert(error);
-        });
+            if (error.response) {
+                // La solicitud se hizo y el servidor respondió con un código de estado
+                // que cae fuera del rango de 2xx
+                console.log(error.response.data);
+                alert(error.response.status + " " + error.response.data);
+                console.log(error.response.headers);
+        }});
     },
     
     

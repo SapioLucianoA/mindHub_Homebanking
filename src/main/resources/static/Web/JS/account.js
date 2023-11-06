@@ -15,9 +15,11 @@ createApp({
     let params = new URLSearchParams(window.location.search).get(`accountId`);
     console.log(params)
     axios
-      .get('http://localhost:8080/api/accounts')
+      .get("/api/clients/current/accounts")
       .then(response => {
+        console.log(response)
         this.accounts = response.data
+        
         this.account = this.accounts.find(account => String(account.id) === String(params)) 
         this.transactions = this.account.transactions
         this.transactions.sort((a, b) => b.id - a.id)

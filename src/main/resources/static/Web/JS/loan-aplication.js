@@ -3,43 +3,60 @@ const { createApp } = Vue
 createApp({
   data() {
     return {
-      accounts:[],
+      loans: [],
+    selectedLoan: null,
+    selectedPayment: null,
       amount:"",
-      number:"",
-      number2:"",
-      description:"",
-      picked: null,
+      id:"",
+      payments:"",
+      payment:null,
+      accounts: [],
+      accountNumber: "",
     }
   },
 
   created () {
-    axios.get('/api/clients/current/accounts')
+    axios.get('/api/loans')
       .then(response => {
-        console.log(response)
+        
+       this.loans = response.data
+      
+      }),
+
+      axios.get('/api/clients/current/accounts')
+      .then(response => {
+        
         this.accounts = response.data
+        
       })
+
+      
   },
 
   methods: {
     isBlank(str) {
       return (!str || /^\s*$/.test(str));
     },
+    getLoanById(id) {
+      return this.loans.find(loan => loan.id === id);
+    },
 
-    SendTransaction(){
-      if (this.isBlank(this.number)) {
-        alert('Please, complete the origin account.');
+    sendLoan(){
+      if (this.isBlank(this.accountNumber)) {
+        alert('Please, complete the account.');
         return;
       }
-      if (this.isBlank(this.number2)) {
-        alert('Please, complete the account to send the transaction.');
+      if (this.isBlank(this.selectedLoan)) {
+        alert('Please, complete the loan.');
         return;
       }
-      if (this.isBlank(this.description)) {
-        alert('Please,  complete the description.');
+      if (this.isBlank(this.payment)) {
+        alert('Please,  complete the payment.');
         return;
       }
-      if(confirm('¿are you sure to send this transaction? Please take a another look before to send'))
-        axios.post('/api/transactions', `amount=${(this.amount)}&number=${this.number}&number2=${this.number2}&description=${this.description}`)
+      if(confirm('¿are you sure to send the loan? remember the amount have a 20% plus'))
+      console.log(this.selectedLoan);
+        axios.post('/api/loan', { loanId:this.selectedLoan, amount:this.amount, accountNumber: this.accountNumber, payment: this.payment})
           .then(response => {
             console.log(response)
             window.location.href = '/web/pages/accounts.html'
@@ -49,7 +66,7 @@ createApp({
                 // La solicitud se hizo y el servidor respondió con un código de estado
                 // que cae fuera del rango de 2xx
                 console.log(error.response.data);
-                alert(error.response.status + " " + error.response.data);
+                alert(error.response.status + " - " + error.response.data);
                 console.log(error.response.headers);
             } else if (error.request) {
                 // La solicitud se hizo pero no se recibió ninguna respuesta
