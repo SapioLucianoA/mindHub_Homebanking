@@ -24,6 +24,10 @@ public class Transaction {
     private String description;
     private Double amount;
 
+    private Double currentBalance;
+
+    private Status status;
+
     public Transaction() {
     }
 
@@ -32,12 +36,30 @@ public class Transaction {
     @JoinColumn()
     private Account account;
 
-    public Transaction(LocalDateTime date, TransactionType type, String description, Double amount, Account account) {
+    public Transaction(Status status, Double currentBalance, LocalDateTime date, TransactionType type, String description, Double amount, Account account) {
         this.date = date;
         this.type = type;
         this.description = description;
         this.amount = amount;
         this.account = account;
+        this.currentBalance = currentBalance;
+        this.status = status;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Double getCurrentBalance() {
+        return currentBalance;
+    }
+
+    public void setCurrentBalance(Double currentBalance) {
+        this.currentBalance = currentBalance;
     }
 
     public Long getId() {

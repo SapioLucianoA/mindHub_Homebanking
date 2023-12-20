@@ -11,6 +11,7 @@ createApp({
     }
   },
 
+  
   created () {
     let params = new URLSearchParams(window.location.search).get(`accountId`);
     console.log(params)

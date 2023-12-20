@@ -1,24 +1,23 @@
 package com.mindhub.homebanking.service;
 
-import com.mindhub.homebanking.repositories.AccountRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.mindhub.homebanking.models.Account;
+import com.mindhub.homebanking.models.Client;
 
-import java.util.Random;
+import java.util.List;
 
-@Service
-public class AccountService {
+public interface AccountService {
 
-    @Autowired
-    private AccountRepository accountRepository;
+    boolean accountExistByNumber (String number);
 
-    public String generateUniqueAccountNumber() {
-        Random rand = new Random();
-        String num1;
-        do {
-            int num = rand.nextInt(99999999) + 1;
-            num1 = String.format("%03d", num);
-        } while(accountRepository.existsByNumber("VIN-" + num1));
-        return "VIN-" + num1;
-    }
+    Account findAccountByNumber (String number);
+    void saveAccount (Account account);
+
+    List<Account> findAllAccounts();
+
+    Account findByAccountId(Long id);
+
+    String generateAccountNumber();
+
+    boolean accountExistByNumberAndClient(String number, Client client);
+
 }

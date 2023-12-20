@@ -1,5 +1,6 @@
 package com.mindhub.homebanking.DTO;
 
+import com.mindhub.homebanking.models.Status;
 import com.mindhub.homebanking.models.Transaction;
 import com.mindhub.homebanking.models.TransactionType;
 
@@ -16,6 +17,8 @@ public class TransactionDTO {
 
     private String description;
     private Double amount;
+    private Double currentBalance;
+    private Status status;
 
     public TransactionDTO(Transaction transaction){
         id = transaction.getId();
@@ -23,6 +26,12 @@ public class TransactionDTO {
         description= transaction.getDescription();
         type= transaction.getType();
         amount= transaction.getAmount();
+        currentBalance = transaction.getCurrentBalance();
+        status = transaction.getStatus();
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     public Long getId() {
@@ -46,4 +55,5 @@ public class TransactionDTO {
     public Double getAmount() {
         return amount;
     }
+    public Double getCurrentBalance(){return currentBalance;}
 }

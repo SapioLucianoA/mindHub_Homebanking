@@ -6,6 +6,8 @@ import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Transaction;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.TransactionRepository;
+import com.mindhub.homebanking.service.AccountService;
+import com.mindhub.homebanking.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
@@ -19,25 +21,19 @@ import java.util.stream.Collectors;
 @RequestMapping("/api")
 public class TransactionController {
     @Autowired
-    private TransactionRepository transactionRepository;
+    private ClientService clientService;
 
     @Autowired
-    private AccountRepository accountRepository;
+    private AccountService accountService;
 
-    @RequestMapping("/transactions")
+    @GetMapping("/transactions")
     public List<TransactionDTO> getAllTransactions(){
-        List<Transaction> transactions = transactionRepository.findAll();
+        List<Transaction> transactions = clientService.findAllTransactions();
         return transactions.stream()
                 .map(transaction -> new TransactionDTO(transaction))
                 .collect(Collectors.toList());
     }
-    @GetMapping("/{id}/transactions")
-    public ResponseEntity<List<Transaction>> getAccountTransactions(@PathVariable Long id) {
-        Account account;
-        account = accountRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Account not found with id " + id));
-        List<Transaction> transactions = transactionRepository.findByAccountId(account.getId());
-        return ResponseEntity.ok(transactions);
-    }
+
 
 
 }

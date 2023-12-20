@@ -22,6 +22,8 @@ public class Card {
     private LocalDate fromDate;
     private LocalDate thruDate;
 
+    private Status status;
+
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn()
@@ -33,7 +35,7 @@ public class Card {
     public Card() {
     }
 
-    public Card(Client client, CardType type, CardColor color, String cvv, String cardHolder, String number, LocalDate fromDate, LocalDate thruDate) {
+    public Card(Status status, Client client, CardType type, CardColor color, String cvv, String cardHolder, String number, LocalDate fromDate, LocalDate thruDate) {
         this.type = type;
         this.color = color;
         this.cvv = cvv;
@@ -42,8 +44,17 @@ public class Card {
         this.fromDate = fromDate;
         this.thruDate = thruDate;
         this.client = client;
+        this.status = status;
+
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 
     public Long getId() {
         return id;

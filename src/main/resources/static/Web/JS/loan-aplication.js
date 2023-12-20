@@ -54,11 +54,12 @@ createApp({
         alert('Please,  complete the payment.');
         return;
       }
-      if(confirm('¿are you sure to send the loan? remember the amount have a 20% plus'))
+      if(confirm('¿are you sure to send the loan? remember the amount have a plus'))
       console.log(this.selectedLoan);
         axios.post('/api/loan', { loanId:this.selectedLoan, amount:this.amount, accountNumber: this.accountNumber, payment: this.payment})
           .then(response => {
-            console.log(response)
+            console.log(response);
+            alert("Loan Created");
             window.location.href = '/web/pages/accounts.html'
           })
           .catch(error => {
@@ -70,7 +71,7 @@ createApp({
                 console.log(error.response.headers);
             } else if (error.request) {
                 // La solicitud se hizo pero no se recibió ninguna respuesta
-                console.log(error.request);
+                alert(error.request);
             } else {
                 // Algo sucedió en la configuración de la solicitud que provocó un error
                 console.log('Error', error.message);
@@ -86,9 +87,34 @@ createApp({
           window.location.href = '/web/index.html';
         })
         .catch(error => {
-          alert(error);
-        });
+          if (error.response) {
+              // La solicitud se hizo y el servidor respondió con un código de estado
+              // que cae fuera del rango de 2xx
+              console.log(error.response.data);
+              alert(error.response.status + " " + error.response.data);
+              console.log(error.response.headers);
+          } else if (error.request) {
+              // La solicitud se hizo pero no se recibió ninguna respuesta
+              alert(error.request);
+          } else {
+              // Algo sucedió en la configuración de la solicitud que provocó un error
+              console.log('Error', error.message);
+          }
+          console.log(error.config);
+      });
     },
+    showIncrement(){
+      if (this.payment >= 32){
+        return this.amount * 1.8
+      }
+      else if (this.payment < 32 && this.payment > 12){
+        return this.amount * 1.6
+      }
+      else {
+        return this.amount * 1.2
+      }
+    },
+    
   }
 })
 .mount('#app')

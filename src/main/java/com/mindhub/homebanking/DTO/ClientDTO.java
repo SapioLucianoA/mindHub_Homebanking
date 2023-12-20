@@ -3,6 +3,7 @@ package com.mindhub.homebanking.DTO;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.models.ClientLoan;
+import com.mindhub.homebanking.models.Status;
 
 import java.util.List;
 import java.util.Set;
@@ -31,6 +32,7 @@ public class ClientDTO {
 
       accounts = client.getAccounts()
                 .stream()
+              .filter(account -> account.getStatus() == Status.ACTIVE)
                 .map(account -> new AccountDTO(account))
                 .collect(Collectors.toList());
 
@@ -41,6 +43,7 @@ public class ClientDTO {
 
       cards= client.getCards()
               .stream()
+              .filter(card -> card.getStatus() == Status.ACTIVE)
               .map(card -> new CardDTO(card))
               .collect(Collectors.toList());
     };

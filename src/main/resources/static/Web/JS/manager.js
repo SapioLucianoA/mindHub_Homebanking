@@ -4,7 +4,12 @@ createApp({
   data() {
     return {
       message: 'Hello Vue!',
-      clients: [],
+      email: '',
+      password: '',
+      name:'',
+      lastName: '',
+      clientRole:'',
+      
     }
   },
 
@@ -21,35 +26,34 @@ createApp({
   },
 
   methods: {
-    enviarDatos() {
-      let datos = new FormData(document.getElementById('clientFormulary'));
-      let object = {};
-      for (let [key, value] of datos) {
-        if (!value || value.trim() === '') {
-          alert('Por favor completa todos los campos requeridos.');
-          return;
-        }
-        object[key] = value;
-      }
-  
-      // Si algún campo estaba vacío, no continuar
-      if (Object.keys(object).length !== Array.from(datos.keys()).length) {
-        return;
-      }
-  
-      let json = JSON.stringify(object);
-      
-      axios.post('http://localhost:8080/api/clients', json, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
+    register(){
+      axios.post(`/api/client/admin`, `name=${this.name}&lastName=${this.lastName}&email=${this.email}&password=${this.password}&clientRole=${this.clientRole}`  
+      )
+      .then(response => {
+          console.log(response)
+          alert("register succes!")
+          window.location.href = `/web/pages/manager.html`
       })
-      .then((response) => console.log(response.data))
-      .catch((error) => console.error('Error:', error));
-    },
-  }
+      .catch(error => {
+          if (error.response) {
+              // La solicitud se hizo y el servidor respondió con un código de estado
+              // que cae fuera del rango de 2xx
+              console.log(error.response.data);
+              alert(error.response.status + " " + error.response.data);
+              console.log(error.response.headers);
+          } else if (error.request) {
+              // La solicitud se hizo pero no se recibió ninguna respuesta
+              alert(error.request);
+          } else {
+              // Algo sucedió en la configuración de la solicitud que provocó un error
+              console.log('Error', error.message);
+          }
+          console.log(error.config);
+      });;
+  },
   
+ 
    
-}).mount('#app')
+}}).mount('#app')
 
 

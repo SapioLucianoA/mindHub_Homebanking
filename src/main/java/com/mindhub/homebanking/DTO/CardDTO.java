@@ -3,6 +3,7 @@ package com.mindhub.homebanking.DTO;
 import com.mindhub.homebanking.models.Card;
 import com.mindhub.homebanking.models.CardColor;
 import com.mindhub.homebanking.models.CardType;
+import com.mindhub.homebanking.models.Status;
 
 import java.time.LocalDate;
 
@@ -17,6 +18,7 @@ public class CardDTO {
     private LocalDate fromDate;
     private LocalDate thruDate;
 
+    private Status status;
     public CardDTO(Card card){
         id= card.getId();
         type = card.getType();
@@ -26,6 +28,7 @@ public class CardDTO {
         number = card.getNumber();
         fromDate = card.getFromDate();
         thruDate = card.getThruDate();
+        status = card.getStatus();
     }
 
     public Long getId() {
@@ -58,5 +61,9 @@ public class CardDTO {
 
     public LocalDate getThruDate() {
         return thruDate;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 }

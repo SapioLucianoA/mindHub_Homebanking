@@ -10,62 +10,68 @@
 </head>
 <body>
   <div id="app">
-    <div class="d-flex  header-div" >
-      <nav class="navbar navbar-expand-lg bg-body-tertiary header-nav ms-1">
-        <div class="container-fluid ">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active " aria-current="page" href="../index.html"> <span class="textHeader fw-bold " > Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="./accounts.html"> <span class="textHeader fw-bold " > Account</span> </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="./cards.html"> <span class="textHeader fw-bold " > Cards </span></a>
-              </li>
-              <li>
-                <a class="nav-link active ms-2"  href="./transfer.html" > <span class="textHeader fw-bold " > transfers </span></a>
-              </li>
-              <li>
-                <a class="nav-link active ms-2"  href="#"  @click="logout" > <span class="textHeader fw-bold " > Log out </span></a>
-              </li>
-              <li>
-                <a class="nav-link active ms-2"  href="./loan-aplication.html" > <span class="textHeader fw-bold " > Loans </span></a>
-              </li>
-            </ul>
+    <header  >
+      <div class="d-flex  header-div" >
+        <nav class="navbar navbar-expand-lg bg-body-tertiary header-nav ms-1">
+          <div class="container-fluid ">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active ms-1" aria-current="page" href="../index.html"> <span class="textHeader fw-bold " > Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active ms-2" href="#"> <span class="textHeader fw-bold " > Account</span> </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active ms-2" href="./cards.html"> <span class="textHeader fw-bold " > Cards </span></a>
+                </li>
+                <li>
+                  <a class="nav-link active ms-2"  href="./transfer.html" > <span class="textHeader fw-bold " > transfers </span></a>
+                </li>
+                <li>
+                  <a class="nav-link active ms-2"  href="./loan-aplication.html" > <span class="textHeader fw-bold " > Loans </span></a>
+                </li>
+                <li>
+                  <a class="nav-link active ms-2"  href="#"  @click="logout" > <span class="textHeader fw-bold " > Log out </span></a>
+                </li>
+                <li>
+                  <a href="./new-loan.html"class="nav-link active ms-2" ><span class="textHeader fw-bold " > New Loan </span> </a>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </nav>
-      
-      <img src="../images/Capybank.png" alt="Capybank " class="logo-header">
-    </div>
+        </nav>
+        
+        <img src="../images/Capybank.png" alt="Capybank " class="logo-header">
+      </div>
+    </header>
     <main>
     
-        <div>
-            <h2 class="text-center" >New CLient</h2>
+        <div class="w-100 d-flex flex-column justify-content-center align-items-center">
+            
 
-            <div class="d-flex flex-column justify-content-center align-items-center" >
+            <div class="d-flex flex-column justify-content-center align-items-center login-register mt-2 ms-2" >
+              <h2 class="text-center" >New CLient</h2>
 <!-- --------------------------- Formulario  ----------------------- -->
-                <form class="w-25 mb-4" id="clientFormulary" @submit.prevent="enviarDatos">
+                <form class="w-25 mb-4" id="clientFormulary" @submit.prevent="register">
                     <div class="input-group d-flex flex-column justify-content-center ">
                         <span class="input-group-text mb-2 w-100">First name</span>
-                        <input type="text" aria-label="name" name="name" id="name" class="form-control w-100 mb-2" >
+                        <input type="text" aria-label="name" name="name" id="name" class="form-control w-100 mb-2"  v-model="name">
                         <span class="input-group-text mb-2 w-100">Last name</span>
-                        <input type="text" aria-label="lastName" name="lastName" id="lastName" class="form-control w-100 mb-2">
+                        <input type="text" aria-label="lastName" name="lastName" id="lastName" class="form-control w-100 mb-2" v-model="lastName">
                     </div>
                     <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label input-group-text">Email address</label>
-                    <input type="email" class="form-control" id="mail" name="mail" >
+                    <input type="email" class="form-control" id="mail" name="mail" v-model="email" >
                     </div>
                     <div class="mb-3">
                       <label for="roleSelect" class="form-label input-group-text">Role</label>
-                      <select class="form-control" id="roleSelect" name="ClientRole">
-                        <option value="CLIENT">Client</option>
-                        <option value="ADMIN">Admin</option>
+                      <select class="form-control" id="roleSelect" name="ClientRole" v-model="ClientRole">
+                        <option value="CLIENT">CLIENT</option>
+                        <option value="ADMIN">ADMIN</option>
                       </select>
                     </div>
                     <button type="submit" class="btn btn-primary"> Add client </button>
@@ -74,7 +80,7 @@
             </div>
         </div>
         <!-- ------------------------CUADRO------------------------------ -->
-        <div>
+        <div class="mt-5">
             <div class="d-flex justify-content-center w-100" > 
                 <table class="w-100">
                   <tr>
@@ -86,14 +92,14 @@
                     <td class="text-center fw-bold">Name</td>
                     <td class="text-center fw-bold" >Last Name</td>
                     <td class="text-center fw-bold" >Email</td>
-                    <td class="text-center fw-bold">client functions</td>
+                   
                     
                   </tr>
                   <tr v-for="client of clients" >
                     <td class="text-center fw-bold" >{{client.name}}</td>
                     <td class="text-center fw-bold" >{{client.lastName}}</td>
                     <td class="text-center fw-bold" >{{client.mail}} </td>
-                    <td><button type="button" class="deleteButton"  >Delete client</button></td>
+                  
                   </tr>
                 </table>
         </div>

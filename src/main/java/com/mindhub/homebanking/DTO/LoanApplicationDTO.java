@@ -9,6 +9,9 @@ public class LoanApplicationDTO {
     private Integer payment;
     private String accountNumber;
 
+    public LoanApplicationDTO() {
+    }
+
     public LoanApplicationDTO(Double amount, Integer payment, String accountNumber) {
         this.amount = amount;
         this.payment = payment;

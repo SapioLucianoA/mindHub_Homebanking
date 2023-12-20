@@ -55,7 +55,7 @@
           
             <div class="div-of-credit-cards">
             <div class="card cards cards-styles div-credit-card" v-for="account in accounts">
-              <a class="w-100 text-decoration-none " v-bind:href="`./account.html?accountId=${account.id}`">
+              
               <div class="d-flex flex-row justify-content-between align-items-center w-100 mt-2">
                 <h5 class="card-title  fs-2 ms-1 text-dark fw-bold ">USD${{ Number(account.balance).toLocaleString('de-DE')}}</h5>
                 <img src="../images/icons8-capybara-100.png" alt="banco image" class="Cards-logos">
@@ -63,13 +63,15 @@
               <div class="card-body ">
                 <p class="card-text text-dark fw-bold fs-3 ">Account Number: </p>
                 <p class="card-text text-dark fw-bold fs-3 "> {{ account.number }}</p>
+                <p class="card-text text-dark fw-bold fs-3 ">Type of Account: {{account.accountClass}}</p>
                 <p class="card-text text-dark fw-bold " > Creation Date:   {{account.currentDate}}</p>
-                <p class="card-text text-dark fs-2 text-center fw-bold text-decoration-underline" > See transactions </p>
+                <a class="w-100 text-decoration-none " v-bind:href="`./account.html?accountId=${account.id}`"><p class="card-text text-dark fs-2 text-center fw-bold text-decoration-underline" > See transactions </p> </a>
+                <button class="ms-2 mt-2" @click="deleteAccount(account.number, account.status)">remove</button>
               </div>
-              </a>
+             
             </div>
-            <div class="newAccount d-flex align-items-center justify-content-center flex-column" v-bind:class="accountClass" @click="newAccount">
-              <img src="../images/Remove-bg.ai_1698331945447.png" alt="new account" class="newAccountImage">
+            <div class=" newAccount d-flex align-items-center justify-content-center flex-column ms-4" v-bind:class="accountClass" >
+              <a href="./create-account.html" class="w-50 ms-4"><img src="../images/Remove-bg.ai_1698331945447.png" alt="new account" class="newAccountImage"></a>
             </div>
             
 
@@ -82,10 +84,12 @@
                   <h5 class="card-title fs-2 text-dark fw-bold" >Loan:  {{ loan.name }}</h5>
                   <h5 class="card-title fs-3 text-dark fw-bold">USD${{ Number(loan.amount).toLocaleString('de-DE')}}</h5>
                   <p class="card-text  fs-3 text-dark fw-bold " > Total Payments:   {{loan.payments}}</p>
+                  <p class="card-text  fs-3 text-dark fw-bold " >Payments {{loan.sold}} of {{loan.payments}} </p>
+                  <a class="w-100 text-decoration-none " href="./pay-loan.html" ><p class="card-text text-dark fs-2 text-center fw-bold text-decoration-underline" >pay your Loan </p> </a>
+
                 </div>
             </div>
-            <h2 class="message-h2 text-center">
-                    {{message}}
+            <h2 class="message-h2 text-center" v-html="message">
             </h2>
           </div>
             </div>
@@ -112,3 +116,4 @@
     
 </body>
 </html>
+<!-- @click="newAccount" -->

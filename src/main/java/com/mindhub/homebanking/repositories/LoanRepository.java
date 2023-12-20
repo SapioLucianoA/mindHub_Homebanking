@@ -1,16 +1,17 @@
 package com.mindhub.homebanking.repositories;
 
 import com.mindhub.homebanking.models.Loan;
-import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
 public interface LoanRepository extends JpaRepository <Loan, Long> {
 
-    Optional<Loan> findById(Long aLong);
+    @Override
+    Optional<Loan> findById(Long id);
 
+    Loan findLoanByName(String name);
 
-
+    @Override
     boolean existsById(Long id);
 }

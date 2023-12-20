@@ -22,7 +22,8 @@ public class Account {
     private LocalDate currentDateValue;
     private Double balance;
     private String number;
-
+    private AccountClass accountClass;
+    private Status status;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn()
@@ -36,11 +37,13 @@ public class Account {
     public Account() {
     }
 
-    public Account(LocalDate currentDate, Double balance, String number, Client client) {
+    public Account(LocalDate currentDate, Double balance, String number, Client client, AccountClass accountClass, Status status) {
         this.currentDateValue = currentDate;
         this.balance = balance;
         this.number = number;
         this.client = client;
+        this.accountClass = accountClass;
+        this.status = status;
     }
 
 
@@ -83,6 +86,31 @@ public class Account {
         transaction.setAccount(this);
         transactions.add(transaction);
     }
+
+    public AccountClass getAccountClass() {
+        return accountClass;
+    }
+
+    public LocalDate getCurrentDateValue() {
+        return currentDateValue;
+    }
+
+    public void setCurrentDateValue(LocalDate currentDateValue) {
+        this.currentDateValue = currentDateValue;
+    }
+
+    public void setAccountClass(AccountClass accountClass) {
+        this.accountClass = accountClass;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     @JsonBackReference
     public Client getClient() {
         return client;
@@ -95,6 +123,8 @@ public class Account {
                 ", currentDateValue='" + currentDateValue + '\'' +
                 ", balance='" + balance + '\'' +
                 ", number='" + number + '\'' +
+                ", accountClass='" + accountClass + '\'' +
+                ", status='" + status + '\'' +
                 ", client='" + client + '\'' +
                 '}';
     }

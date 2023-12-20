@@ -71,7 +71,7 @@
         </div>
         <div v-if="selectedLoan" class="d-flex flex-column justify-content-center align-items-center">
           <p class="text-center fw-bold fs-3">Max. amount: {{Number(getLoanById(selectedLoan).maxAmount).toLocaleString('de-DE') }}</p>
-          <label for="amountInput" class="text-center fs-5">Enter the amount without any dots or commas <span class="fw-bold"> (the payment have 20% plus) </span>:</label>
+          <label for="amountInput" class="text-center fs-5">Enter the amount without any dots or commas <span class="fw-bold"> (the max amount have a 20% in >12 payments or 60% in < 32 payments or 80% in others ) </span>:</label>
           <input type="number" id="amountInput" v-model="amount">
         </div>
         <h2 class="text-center">Select your account to deposit the Loan</h2>
@@ -92,26 +92,29 @@
     <table >
       <thead>
         <tr>
-          <th colspan="5" class="text-center">Your Loan:</th>
+          <th colspan="2" class="text-center">Your Loan:</th>
         </tr>
       </thead>
         <tbody>
       <tr>
         <td>Loan type:</th>
-        <td>Amount:</th>
-        <td>Account number:</th>
-        <td>payments:</th>
-        <td>total for payment:</th>
-      </tr>
-      
-      
-      <tr>
         <td v-if="selectedLoan">{{ getLoanById(selectedLoan).name }}</td>
-        <td v-if="amount">{{ Number(amount *1.2).toLocaleString('de-DE') }}</td>
-        <td v-if="accountNumber">{{ accountNumber }}</td>
-        <td v-if="payment">{{ payment }}</td>
-        <td>{{ (amount * 1.2) / payment}}</td>
       </tr>
+      <tr>
+        <td>Amount:</th>
+        <td v-if="amount"> {{ Number(showIncrement()).toLocaleString('de-DE')}}</td>
+      <tr>
+        <td>Account number:</th>
+        <td v-if="accountNumber">{{ accountNumber }}</td>
+      <tr>
+        <td>payments:</th>
+        <td v-if="payment">{{ payment }}</td>
+      <tr>
+        <td>total for payment:</th>
+          <td>{{ (showIncrement() / payment).toLocaleString('de-DE') }}</td>
+
+      </tr>
+
       </tbody>
     </table>
   </div>

@@ -1,6 +1,8 @@
 package com.mindhub.homebanking.DTO;
 
 import com.mindhub.homebanking.models.Account;
+import com.mindhub.homebanking.models.AccountClass;
+import com.mindhub.homebanking.models.Status;
 import com.mindhub.homebanking.models.Transaction;
 
 import java.time.LocalDate;
@@ -15,6 +17,8 @@ public class AccountDTO {
     private Double balance;
     private String number;
     private List<TransactionDTO> transactions;
+    private AccountClass accountClass;
+    private Status status;
 
 
     public AccountDTO(Account account){
@@ -22,6 +26,8 @@ public class AccountDTO {
         currentDateValue = account.getCurrentDate();
         balance = account.getBalance();
         number = account.getNumber();
+        accountClass = account.getAccountClass();
+        status = account.getStatus();
         transactions = account.getTransactions()
                         .stream()
                         .map(transaction -> new TransactionDTO(transaction))
@@ -48,5 +54,15 @@ public class AccountDTO {
         return transactions;
     }
 
+    public AccountClass getAccountClass() {
+        return accountClass;
+    }
 
+    public LocalDate getCurrentDateValue() {
+        return currentDateValue;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
 }

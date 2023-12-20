@@ -14,6 +14,9 @@ public class ClientLoan {
     private Long id;
     private Double amount;
     private Integer payments;
+    private Integer sold;
+
+    private  Status status;
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
@@ -28,15 +31,34 @@ public class ClientLoan {
     public ClientLoan() {
     }
 
-    public ClientLoan(Double amount, Integer payments, Client client, Loan loan) {
+    public ClientLoan(Double amount, Integer payments, Client client, Loan loan, Integer sold, Status status) {
         this.amount = amount;
         this.payments = payments;
         this.client = client;
         this.loan = loan;
+        this.sold = sold;
+        this.status = status;
+
     }
 
     public Long getId() {
         return id;
+    }
+
+    public Integer getSold() {
+        return sold;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public void setSold(Integer sold) {
+        this.sold = sold;
     }
 
     public Double getAmount() {
@@ -70,4 +92,5 @@ public class ClientLoan {
     public void setLoan(Loan loan) {
         this.loan = loan;
     }
+
 }

@@ -16,36 +16,36 @@ createApp({
       lastName:'',
       showCVV: false,
       limitCard: '',
+      today: '',
+      number: '',
+      status:'',
+
     }
   },
 
   created () {
-    axios
-      .get('http://localhost:8080/api/clients/current')
+      axios
+      .get('/api/clients/current/cards')
       .then(response => {
-        this.clients = response.data
-        
-        this.cards = this.clients.cards
-        this.checkCards;
 
+        
+        this.cards = response.data
+        this.today = new Date;  
         console.log(this.cards)
+
+        this.checkCards;
 
         this.creditCards = this.cards.filter(card => card.type ===  "CREDIT" )
 
         this.debitCards = this.cards.filter(card => card.type === "DEBIT")
-        
         console.log(this.creditCards)
         console.log(this.debitCards)
         this.checkCardsCredit;
         this.checkCardsDebit;
         this.checkLimitCards();
-
-        
-
-
         
       })
-    
+
   },
   computed: {
     checkCards() {
@@ -75,9 +75,21 @@ createApp({
           window.location.href = '/web/index.html';
         })
         .catch(error => {
-          
-          console.error(error);
-        });
+          if (error.response) {
+              // La solicitud se hizo y el servidor respondió con un código de estado
+              // que cae fuera del rango de 2xx
+              console.log(error.response.data);
+              alert(error.response.status + " " + error.response.data);
+              console.log(error.response.headers);
+          } else if (error.request) {
+              // La solicitud se hizo pero no se recibió ninguna respuesta
+              alert(error.request);
+          } else {
+              // Algo sucedió en la configuración de la solicitud que provocó un error
+              console.log('Error', error.message);
+          }
+          console.log(error.config);
+      });
     },
     checkLimitCards() {
       if(this.cards.length >= 6){
@@ -87,6 +99,36 @@ createApp({
   isBlank(str) {
       return (!str || /^\s*$/.test(str));
   },
+
+  deleteCard(number, status){
+    if (!number || !status) {
+      alert('Number and status are required');
+      return;
+    }
+  
+    axios.patch('/api/client/remove/card', `number=${number}&status=${status}`)
+    .then(response => {
+      console.log(response)
+      window.location.href = `/web/pages/cards.html`
+    }) .catch(error => {
+  if (error.response) {
+      // La solicitud se hizo y el servidor respondió con un código de estado
+      // que cae fuera del rango de 2xx
+      console.log(error.response.data);
+      alert(error.response.status + " " + error.response.data);
+      console.log(error.response.headers);
+  } else if (error.request) {
+      // La solicitud se hizo pero no se recibió ninguna respuesta
+      alert(error.request);
+  } else {
+      // Algo sucedió en la configuración de la solicitud que provocó un error
+      console.log('Error', error.message);
+  }
+  console.log(error.config);
+});
+
+    },
+
     newCard(){
       if (this.isBlank(this.name)) {
         alert('Please, complete your First Name.');
@@ -108,10 +150,24 @@ createApp({
       axios.post("/api/clients/current/cards", `type=${this.type}&color=${this.color}&name=${this.name}&lastName=${this.lastName}`)
       .then(response =>
         console.log(response),
+        
         window.location.href = `/web/pages/cards.html`
       )
       .catch(error => {
-        alert(error);
+        if (error.response) {
+            // La solicitud se hizo y el servidor respondió con un código de estado
+            // que cae fuera del rango de 2xx
+            console.log(error.response.data);
+            alert(error.response.status + " " + error.response.data);
+            console.log(error.response.headers);
+        } else if (error.request) {
+            // La solicitud se hizo pero no se recibió ninguna respuesta
+            alert(error.request);
+        } else {
+            // Algo sucedió en la configuración de la solicitud que provocó un error
+            console.log('Error', error.message);
+        }
+        console.log(error.config);
     });
     },
     maskCVV(cvv) {

@@ -2,10 +2,7 @@ package com.mindhub.homebanking.DTO;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.mindhub.homebanking.models.Client;
-import com.mindhub.homebanking.models.ClientLoan;
-import com.mindhub.homebanking.models.Loan;
-import com.mindhub.homebanking.models.Transaction;
+import com.mindhub.homebanking.models.*;
 import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.FetchType;
@@ -17,11 +14,13 @@ public class ClientLoanDTO {
     private Long id;
     private Double amount;
     private Integer payments;
+    private Integer sold;
     @JsonBackReference
     private Client client;
 
     private Long loanId;
     private String name;
+    private Status status;
 
     public ClientLoanDTO(ClientLoan clientLoan){
         id = clientLoan.getId();
@@ -30,6 +29,16 @@ public class ClientLoanDTO {
         client= clientLoan.getClient();
         loanId = clientLoan.getLoan().getId();
         name = clientLoan.getLoan().getName();
+        sold = clientLoan.getSold();
+        status = clientLoan.getStatus();
+    }
+
+    public Integer getSold() {
+        return sold;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     public Long getId() {

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="../images/Favicon.png" type="image/x-icon">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../css/style.css">
         <title>Homebanking | Your Cards</title>
     </head>
     <body>
@@ -46,7 +46,7 @@
 <main>
 <div >
     <div class="w-100" >
-        <h2 class="text-center" >Your Cards:</h2>
+        <h2 class="text-center mt-2" >Your Cards:</h2>
         <a href="./create-cards.html" v-bind:class="limitCard"  class=" text-decoration-none d-flex justify-content-center align-items-center newAccount"><h2 class="text-center text-decoration-none textHeader " > New Card</h2>
         <img src="../images/icons8-credit-card-64.png" alt="creditCards" ></a>
         <h2 class="message-h2 text-center">
@@ -58,27 +58,37 @@
                     {{messageCredit}} </h2>
                 <div class="debitandCredirCards mb-3"  >
                     <div class="card cardContainer" v-for="card in creditCards" v-bind:class="{ 'TITANIUM': card.color === 'TITANIUM', 'GOLD': card.color === 'GOLD', 'SILVER': card.color === 'SILVER' } " >
-                        <div class="creditDebitCards " >
-                            <div class="d-none d-md-flex d-flex flex-row  align-items-center w-100  justify-content-between">
+                      <div class="creditDebitCards " >
+                        <div v-if="card.thruDate > today.toLocaleDateString()">
+                          <h2 class="text-center  fs-4 ms-2">ALERT!: This Card is Expired</h2>
+                        </div>
+                      <div class="creditDebitCards " >
+                          
+                            <div class="d-flex flex-row justify-content-between align-items-center w-100 d-none d-md-flex">
                                 <img src="../images/06794e75-0966-4962-a199-a942c5f9d611.jpg" alt="chip" class="Cards-logosCD">
                                 <img src="../images/Logo.png" alt="banco image" class="Cards-logosCD">
                             </div>
-                            <div class="card-body">
-                              <p class="card-text text-dark ownerTypeCard fw-bold"> {{card.type}} CARD </p>
-                              <p class="card-text text-dark ownerTypeCard fw-bold">{{card.number}} </p>
-                              <div class="dateCards">
-                                <div class="d-flex flex-row justify-content-center align-items-center">
-                                  <button @click="showCVV = !showCVV" class="buttonCVV">CVV:</button>
-                                <p class="card-text text-dark fw-bold ms-2" v-if="!showCVV">{{maskCVV(card.cvv)}}</p>
-                                <p class="card-text text-dark fw-bold  ms-2" v-else> {{card.cvv}}</p>
-                                
-                               </div>
-
-                                  <p class="card-text text-dark fw-bold"> Expired: {{card.thruDate}}</p>
-                              </div>
-                              
-                          </div>
+                            <div class="mt-2">
+                                <p class="card-text text-dark ownerTypeCard fw-bold ms-2"> {{card.type}} CARD </p>
+                                <p class="card-text text-dark ownerTypeCard fw-bold ms-2 fs-3">{{card.number}} </p>
+                                <div class="dateCards ms-2">
+                                  <div class="d-flex flex-row justify-content-evenly align-items-center ms-2">
+                                    <button @click="showCVV = !showCVV" class="buttonCVV">CVV:</button>
+                                  <p class="card-text text-dark fw-bold ms-2" v-if="!showCVV">{{maskCVV(card.cvv)}}</p>
+                                  <p class="card-text text-dark fw-bold  ms-2" v-else> {{card.cvv}}</p>
+                                  
+                                  
+                                 </div>
+  
+                                    <p class="card-text text-dark fw-bold me-2"> Expired: {{card.thruDate}}</p>
+                                    
+                                </div>
+                                <button class="ms-2 mt-2 w-25" @click.prevent="deleteCard(card.number, card.status)">remove</button>
+                            </div>
+                            
                         </div>
+                        
+                    </div>
                     </div>
                 </div>
             </div>
@@ -90,30 +100,39 @@
                     {{messageDebit}} </h2>
                 
                 <div class="debitandCredirCards"  >
-                    <div class="card cardContainer" v-for="card in debitCards" v-bind:class="{ 'TITANIUM': card.color === 'TITANIUM', 'GOLD': card.color === 'GOLD', 'SILVER': card.color === 'SILVER' } " >
-                        <div class="creditDebitCards " >
-                            <div class="d-flex flex-row justify-content-between align-items-center w-100 d-none d-md-flex">
-                                <img src="../images/06794e75-0966-4962-a199-a942c5f9d611.jpg" alt="chip" class="Cards-logosCD">
-                                <img src="../images/Logo.png" alt="banco image" class="Cards-logosCD">
-                            </div>
-                            <div class="mt-2">
-                                <p class="card-text text-dark ownerTypeCard fw-bold ms-2"> {{card.type}} CARD </p>
-                                <p class="card-text text-dark ownerTypeCard fw-bold ms-2">{{card.number}} </p>
-                                <div class="dateCards">
-                                  <div class="d-flex flex-row justify-content-evenly align-items-center ms-2">
-                                    <button @click="showCVV = !showCVV" class="buttonCVV">CVV:</button>
-                                  <p class="card-text text-dark fw-bold ms-2" v-if="!showCVV">{{maskCVV(card.cvv)}}</p>
-                                  <p class="card-text text-dark fw-bold  ms-2" v-else> {{card.cvv}}</p>
-                                  
-                                 </div>
-  
-                                    <p class="card-text text-dark fw-bold me-2"> Expired: {{card.thruDate}}</p>
-                                </div>
+                  <div class="card cardContainer" v-for="card in debitCards" v-bind:class="{ 'TITANIUM': card.color === 'TITANIUM', 'GOLD': card.color === 'GOLD', 'SILVER': card.color === 'SILVER' } " >
+                    <div class="creditDebitCards " >
+                      <div v-if="card.thruDate > today.toLocaleDateString()">
+                        <h2 class="text-center  fs-4 ms-2">ALERT!: This Card is Expired</h2>
+                      </div>
+                    <div class="creditDebitCards " >
+                        
+                          <div class="d-flex flex-row justify-content-between align-items-center w-100 d-none d-md-flex">
+                              <img src="../images/06794e75-0966-4962-a199-a942c5f9d611.jpg" alt="chip" class="Cards-logosCD">
+                              <img src="../images/Logo.png" alt="banco image" class="Cards-logosCD">
+                          </div>
+                          <div class="mt-2">
+                              <p class="card-text text-dark ownerTypeCard fw-bold ms-2"> {{card.type}} CARD </p>
+                              <p class="card-text text-dark ownerTypeCard fw-bold ms-2 fs-3">{{card.number}} </p>
+                              <div class="dateCards ms-2">
+                                <div class="d-flex flex-row justify-content-evenly align-items-center ms-2">
+                                  <button @click="showCVV = !showCVV" class="buttonCVV">CVV:</button>
+                                <p class="card-text text-dark fw-bold ms-2" v-if="!showCVV">{{maskCVV(card.cvv)}}</p>
+                                <p class="card-text text-dark fw-bold  ms-2" v-else> {{card.cvv}}</p>
                                 
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                
+                               </div>
+
+                                  <p class="card-text text-dark fw-bold me-2"> Expired: {{card.thruDate}}</p>
+                                  
+                              </div>
+                              <button class="ms-2 mt-2 w-25" @click.prevent="deleteCard(card.number, card.status)">remove</button>
+                          </div>
+                          
+                      </div>
+                      
+                  </div>
+              </div>
             </div>
         </div>
     </div>

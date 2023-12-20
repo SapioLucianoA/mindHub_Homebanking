@@ -38,22 +38,22 @@
      
     <main>
         <div class="w-100 index-div"  id="app" >
-          <div class="login-register rounded"> 
+          <div class="login-register rounded mt-5"> 
             <div class="d-flex flex-column justify-content-center align-items-center mt-2 ">
               <a href="./index.html"><img src="./images/Capybank.png" alt="logo" class="logo-header"></a>
-              <h1 class="text-center">Use your email and your password</h1>
+              <h2 class="text-center">Use your email and your password</h2>
               <form class="w-75 mb-4" id="clientFormulary" @submit.prevent="submitForm">
                   <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label w-100">Email address</label>
+                      <label for="exampleInputEmail1" class="form-label w-100 fs-5 fw-bold text-center">Email address</label>
                       <input type="email" class="form-control w-100" v-model="email" id="email">
                   </div>
                   <div class="mb-3">
-                      <label for="password" class="form-label w-100">Password</label>
+                      <label for="password" class="form-label w-100 fs-5 fw-bold text-center">Password</label>
                       <input type="password" class="form-control w-100" v-model="password" id="password">
                   </div>
                   <div class="d-flex justify-content-center align-items-center flex-column">
                   <button type="submit" class="btn btn-primary w-50">Login</button>
-                  <p class="text-center mt-2">or</p>
+                  <p class="text-center mt-2 fs-4">or</p>
                   <a href="./register.html" class="fs-4 fw-bold"> <p class="text-center">Register</p></a>
                 </div>
               </form>

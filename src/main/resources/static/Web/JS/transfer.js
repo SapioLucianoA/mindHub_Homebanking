@@ -42,6 +42,7 @@ createApp({
         axios.post('/api/transactions', `amount=${(this.amount)}&number=${this.number}&number2=${this.number2}&description=${this.description}`)
           .then(response => {
             console.log(response)
+            alert("Transaction Send!")
             window.location.href = '/web/pages/accounts.html'
           })
           .catch(error => {
@@ -69,8 +70,21 @@ createApp({
           window.location.href = '/web/index.html';
         })
         .catch(error => {
-          alert(error);
-        });
+          if (error.response) {
+              // La solicitud se hizo y el servidor respondió con un código de estado
+              // que cae fuera del rango de 2xx
+              console.log(error.response.data);
+              alert(error.response.status + " " + error.response.data);
+              console.log(error.response.headers);
+          } else if (error.request) {
+              // La solicitud se hizo pero no se recibió ninguna respuesta
+              alert(error.request);
+          } else {
+              // Algo sucedió en la configuración de la solicitud que provocó un error
+              console.log('Error', error.message);
+          }
+          console.log(error.config);
+      });
     },
   }
 })

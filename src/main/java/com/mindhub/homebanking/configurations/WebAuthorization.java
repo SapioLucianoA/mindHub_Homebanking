@@ -26,6 +26,19 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter   {
                 .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
                 .antMatchers("/web/index.html").permitAll()
                 .antMatchers("/web/login.html").permitAll()
+                .antMatchers("/web/pages/manager.html").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/client/admin").hasAuthority("ADMIN")
+                .antMatchers("/h2/console").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST,"/api/client/pay").authenticated()
+                .antMatchers(HttpMethod.PATCH, "/api/clients/remove/account").authenticated()
+                .antMatchers(HttpMethod.PATCH, "/api/client/remove/card").authenticated()
+
+                .antMatchers("/web/pages/pay-loan").authenticated()
+                .antMatchers("/web/pages/create-account").authenticated()
+                .antMatchers("/web/pages/new-loan").hasAuthority("ADMIN")
+
+
+
 
                 .antMatchers("/web/register.html").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/login").permitAll()
@@ -37,16 +50,11 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter   {
                 .antMatchers(HttpMethod.GET, "/api/clients").hasAuthority("ADMIN")
 
                 .antMatchers(HttpMethod.GET,"/api/clients/{id}").hasAuthority("ADMIN")
-                .antMatchers("/h2/console").hasAuthority("ADMIN")
-                .antMatchers("/web/pages/manager.html").hasAuthority("ADMIN")
+
+
                 .antMatchers("/rest/**").hasAuthority("ADMIN")
                 .antMatchers("/api/**").hasAuthority("ADMIN")
                 .anyRequest().denyAll();
-
-
-
-
-
 
 
         ;
